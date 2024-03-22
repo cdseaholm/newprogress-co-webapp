@@ -4,26 +4,16 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-start-rgb: 255, 254, 201;
+  --background-end-rgb: 255, 254, 201;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --foreground-rgb: 38, 38, 38;
+    --background-start-rgb: 255, 254, 201;
+    --background-end-rgb: 255, 254, 201;
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
@@ -31,3 +21,38 @@ body {
     text-wrap: balance;
   }
 }
+
+/* body-pieces */
+
+button:hover {
+  cursor: pointer;
+}
+
+div.first {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+div.childFirst {
+  background-color: rgba(51, 65, 85, 0.5);
+  border-radius: 10px;
+  box-shadow: 0 0 10px 10px rgba(51, 65, 85, 0.5);
+}
+
+/* transitions */
+
+.landing-page {
+  transition: transform 1s ease-in-out;
+}
+
+.slide-up {
+  transform: translateY(-100%);
+}
+
+.scale-150 {
+  transition: transform 0.3s;
+  transform: scale(1.5);
+}
+
+/* images */
+
+
