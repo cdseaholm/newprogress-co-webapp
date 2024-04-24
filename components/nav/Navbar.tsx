@@ -32,11 +32,11 @@ const SidenavMobile = () => {
     };
     window.addEventListener('mousedown', handleOutsideClick);
     return () => window.removeEventListener('mousedown', handleOutsideClick);
-  }, [clicked, imageRef]);
+  }, [clicked, imageRef, imageClick]);
 
-  const linkText = pathname === '/npdashboard' ? 'New Progress Apps' : 'New Progress Dashboard';
+  const linkText = pathname === '/services' ? 'New Progress Apps' : 'New Progress Services';
 
-  const linkRef = pathname === '/npdashboard' ? '/npapps' : '/npdashboard';
+  const linkRef = pathname === '/services' ? '/npapps' : '/services';
 
   return (
     <>

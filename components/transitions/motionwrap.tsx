@@ -1,12 +1,11 @@
 'use client'
 
+import { motion } from 'framer-motion';
 
-import { motion } from "framer-motion";
-
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-    
+const MotionWrap = ({children, key}: {children: React.ReactNode; key: string}) => {
     return (
         <motion.div
+        key={key}
         initial={{ y: 300, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: -300, opacity: 0 }}
@@ -19,4 +18,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             {children}
         </motion.div>
     );
-}
+};
+
+export default MotionWrap;

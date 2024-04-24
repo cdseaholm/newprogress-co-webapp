@@ -1,13 +1,13 @@
 import MotionWrap from "@/components/transitions/motionwrap";
 
 export const metadata = {
-    title: "NP Apps",
-    description: "A One Sheet for NP Apps."
+    title: "NP Portfolio",
+    description: "Waitlist sign up for Portfolio."
 };
 
-export default function NPGamrLayout({ children }: { children: React.ReactNode }) {
+export default function PortfolioLayout({ children }: { children: React.ReactNode }) {
     return (
-        <MotionWrap key="npgamr">
+        <MotionWrap key="nptrackr">
             <div className="childFirst min-w-screen min-h-screen my-10 mx-10">
                 {children}
             </div>

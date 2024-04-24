@@ -3,6 +3,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import useMediaQuery from '@/components/listeners/WidthSettings';
+import Link from 'next/link';
   
 
 export default function Home() {
@@ -28,19 +29,18 @@ export default function Home() {
   return (
     <main>
       <div className={`landing-page ${isShowing ? 'slide-up' : ''}`}>
-        <div className={`flex px-5 ${isBreakpoint ? 'py-5' : 'py-8'}`}>
+        <div className={`flex px-5 py-5 md:py-8`}>
           <div className='min-h-screen min-w-screen my-10 mx-10'>
-            <h1 className={`flex flex-start ${isBreakpoint ? 'text-6xl' : 'text-8xl'} mt-2 font-semibold text-slate-600`}>New Progress</h1>
-            <h2 className={`flex ${isBreakpoint ? 'text-xl' : 'text-2xl'} font-semibold text-slate-600 pb-20`}>A New Way to Make Progress</h2>
-            <div className='flex flex-row items-start space-x-10'>
-            <button className={`flex ${isBreakpoint ? 'text-sm p-2' : 'text-md p-3'} bg-slate-500/70 text-white rounded-lg`} onClick={navigateToNPApps}>
-              New Progress Applications
-            </button>
-            <button className={`flex ${isBreakpoint ? 'text-sm p-2' : 'text-md p-3'} bg-slate-500/70 text-white rounded-lg`} onClick={navigateToNPDashboard}>
-              New Progress Dashboard
-            </button>
+            <h1 className={`flex flex-start text-6xl md:text-8xl mt-2 font-semibold text-slate-700`}>New Progress</h1>
+            <h2 className={`flex ${isBreakpoint ? 'text-xl' : 'text-2xl'} font-semibold text-slate-700 pb-20`}>A New Way to Make Progress</h2>
+            <div className='flex flex-row items-center space-x-10'>
+              <Link className={`flex flex-row text-sm p-2 md:text-md md:p-3 bg-slate-600/70 text-white rounded-lg `} href={'/npapps'}>
+                New Progress Applications
+              </Link>
+              <Link className={`flex flex-row text-sm p-2 md:text-md md:p-3 bg-slate-600/70 text-white rounded-lg`} href={'/services'}>
+                New Progress Services
+              </Link>
             </div>
-            <p className='flex flex-row mt-20 justify-center'>~Site in Development~</p>
           </div>
           </div>
         </div>

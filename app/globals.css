@@ -24,6 +24,11 @@
 
 /* body-pieces */
 
+body {
+  background-image: url('../public/images/dawn.jpg');
+  background-size: cover;
+}
+
 button:hover {
   cursor: pointer;
 }
