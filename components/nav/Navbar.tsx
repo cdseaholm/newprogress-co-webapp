@@ -32,7 +32,7 @@ const SidenavMobile = () => {
     };
     window.addEventListener('mousedown', handleOutsideClick);
     return () => window.removeEventListener('mousedown', handleOutsideClick);
-  }, [clicked, imageRef]);
+  }, [clicked, imageRef, imageClick]);
 
   const linkText = pathname === '/services' ? 'New Progress Apps' : 'New Progress Services';
 
