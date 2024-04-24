@@ -34,9 +34,9 @@ const SidenavMobile = () => {
     return () => window.removeEventListener('mousedown', handleOutsideClick);
   }, [clicked, imageRef]);
 
-  const linkText = pathname === '/npdashboard' ? 'New Progress Apps' : 'New Progress Dashboard';
+  const linkText = pathname === '/services' ? 'New Progress Apps' : 'New Progress Services';
 
-  const linkRef = pathname === '/npdashboard' ? '/npapps' : '/npdashboard';
+  const linkRef = pathname === '/services' ? '/npapps' : '/services';
 
   return (
     <>
