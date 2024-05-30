@@ -1,14 +1,18 @@
 'use client'
 
-import { useModalContext } from "@/app/context/modal";
-import { useStateContext } from "@/app/context/state";
+import { useModalStore } from '@/context/modalStore';
+import { useStateStore } from '@/context/stateStore';
 
 
 
 export default function ModalSignUp() {
 
-    const { setSignUpModal, signUpModal, setAlertConfirm, setAlertMessage, setShowAlert,  } = useModalContext();
-    const { urlToUse } = useStateContext();
+    const urlToUse = useStateStore((state) => state.urlToUse);
+    const setSignUpModal = useModalStore((state) => state.setSignUpModal);
+    const setAlertMessage = useModalStore((state) => state.setAlertMessage);
+    const setShowAlert = useModalStore((state) => state.setShowAlert);
+    const setAlertConfirm = useModalStore((state) => state.setAlertConfirm);
+    const signUpModal = useModalStore((state) => state.signUpModal);
 
     const handleWaitlist = async (event: React.FormEvent<HTMLFormElement>) => {
         

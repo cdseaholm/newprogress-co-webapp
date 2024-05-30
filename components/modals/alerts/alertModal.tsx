@@ -1,12 +1,16 @@
 'use client'
 
-import { useModalContext } from '@/app/context/modal';
-import React from 'react'
+import React from 'react';
+import { useModalStore } from '@/context/modalStore';
 
 export default function AlertModal() {
   
 
-    const { setShowAlert, alertParent, showAlert, alertMessage } = useModalContext();
+    const setShowAlert = useModalStore(state => state.setShowAlert);
+    const alertMessage = useModalStore(state => state.alertMessage);
+    const alertParent = useModalStore(state => state.alertParent);
+    const showAlert = useModalStore(state => state.showAlert);
+
     const logoutAlert = alertParent === 'logout' ? true : false;
 
     const handleAlertAccept = () => {
