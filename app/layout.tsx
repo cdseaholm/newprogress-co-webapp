@@ -7,27 +7,23 @@ import Navbar from '../components/nav/Navbar';
 import FooterNavBar from "@/components/footer/footerNavbar";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import React, { useEffect } from "react";
-import { useStateContext } from "./context/state";
+import { useStateStore } from '@/context/stateStore';
+import { usePathname } from "next/navigation";
+import MotionWrap from "@/components/transitions/motionwrap";
+import HarborNavbar from "@/components/nav/HarborNavBar";
+import MainPageBody from "@/components/pagetemplates/mainpagebody";
+import { AnimatePresence } from "framer-motion";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 
-  const { urlToUse, setUrlToUse, setLoading } = useStateContext();
-
-  useEffect(() => {
-    if (urlToUse === '') {
-       if (process.env.NODE_ENV === 'development' && process.env.NEXT_PUBLIC_BASE_URL !== undefined && process.env.NEXT_PUBLIC_BASE_URL !== '' && process.env.NEXT_PUBLIC_BASE_URL !== null) {
-        setUrlToUse(process.env.NEXT_PUBLIC_BASE_URL);
-        setLoading(false);
-       } else if (process.env.NODE_ENV === 'production' && process.env. NEXT_PUBLIC_BASE_LIVEURL !== null && process.env.NEXT_PUBLIC_BASE_LIVEURL !== '' && process.env.NEXT_PUBLIC_BASE_LIVEURL !== undefined) {
-        setUrlToUse(process.env.NEXT_PUBLIC_BASE_LIVEURL);
-        setLoading(false);
-      }
-    } else {
-      setLoading(false);
-    }
-  }, [urlToUse, setUrlToUse, setLoading]);  
+  const urlToUse = useStateStore((state) => state.urlToUse);
+  const setLoading = useStateStore((state) => state.setLoading); 
+  const pathname = usePathname();
+  if (pathname === null || pathname === undefined) {
+    return null;
+  }
   
   useEffect(() => {
       document.body.style.overflow = 'hidden';
@@ -38,20 +34,42 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="en">
+      <AnimatePresence mode="wait" initial={false} onExitComplete={() => window.scrollTo(0, 0)}>
+      {pathname.includes('harbor') &&
         <body className={inter.className}>
-          <div className="first">
-            <div className="h-svh">
+          <div className="bg-white/50 h-dvh">
             <SpeedInsights/>
-              <Providers>
+            <Providers>
+              <MotionWrap motionKey={pathname}>
+                <HarborNavbar />
+                <main className='flex flex-col px-5 h-dvh justify-between'>
+                  <MainPageBody>
+                  {children}
+                  </MainPageBody>
+                </main>
+                <FooterNavBar />
+              </MotionWrap>
+            </Providers>
+          </div>
+        </body>
+      }
+      {!pathname.includes('harbor') &&
+        <body className={inter.className}>
+          <div className="bg-white/50 h-dvh">
+            <SpeedInsights/>
+            <Providers>
+              <MotionWrap motionKey={pathname}>
                 <Navbar />
                 <main>
                   {children}
                 </main>
                 <FooterNavBar />
-              </Providers>
-            </div>
+              </MotionWrap>
+            </Providers>
           </div>
         </body>
+      }
+      </AnimatePresence>
     </html>
   );
 }
