@@ -34,14 +34,14 @@ const SidenavMobile = () => {
     return () => window.removeEventListener('mousedown', handleOutsideClick);
   }, [clicked, imageRef, imageClick]);
 
-  const linkText = pathname === '/services' ? 'New Progress Apps' : 'New Progress Services';
+  const linkText = pathname === '/webdevelopment' ? 'New Progress Apps' : 'New Progress Web Development';
 
-  const linkRef = pathname === '/services' ? '/npapps' : '/services';
+  const linkRef = pathname === '/webdevelopment' ? '/npapps' : '/webdevelopment';
 
   return (
     <>
     <div className='flex flex-between items-center'>
-      <div className='flex items-center ml-5 mt-5 px-6 pt-2'>
+      <div className='flex items-center ml-5 my-2 px-6 pt-2'>
         {pathname !== '/' &&
         <Link className={`text-black font-medium text-sm ${open ? 'text-transparent' : 'text-black'}`} href={`${linkRef}`}>
           {linkText}
