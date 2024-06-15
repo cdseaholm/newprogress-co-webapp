@@ -16,23 +16,22 @@ const HarborNavbar = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [clicked, setClicked] = useState(false);
 
-  const imageClick = () => {
-    setIsHovered(!isHovered);
-    setClicked(!clicked);
-  };
-
   const imageRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     const handleOutsideClick = (event: { target: any; }) => {
       if (!imageRef.current || !imageRef.current.contains(event.target as HTMLDivElement)) {
         if (!clicked) return;
+        const imageClick = () => {
+          setIsHovered(!isHovered);
+          setClicked(!clicked);
+        };
         imageClick();
       }
     };
     window.addEventListener('mousedown', handleOutsideClick);
     return () => window.removeEventListener('mousedown', handleOutsideClick);
-  }, [clicked, imageRef, imageClick]);
+  }, [clicked, imageRef]);
 
   const linkText = pathname === '/services' ? 'New Progress Apps' : 'New Progress Services';
 

@@ -27,7 +27,6 @@ export default function Home() {
   
 
   return (
-    <main>
       <div className={`landing-page ${isShowing ? 'slide-up' : ''}`}>
         <div className={`flex px-5 py-5 md:py-8`}>
           <div className='min-h-screen min-w-screen my-10 mx-10'>
@@ -37,13 +36,12 @@ export default function Home() {
               <Link className={`flex flex-row text-sm p-2 md:text-md md:p-3 bg-slate-600/70 text-white rounded-lg `} href={'/npapps'}>
                 New Progress Applications
               </Link>
-              <Link className={`flex flex-row text-sm p-2 md:text-md md:p-3 bg-slate-600/70 text-white rounded-lg`} href={'/services'}>
-                New Progress Services
+              <Link className={`flex flex-row text-sm p-2 md:text-md md:p-3 bg-slate-600/70 text-white rounded-lg`} href={'/webdevelopment'}>
+                New Progress Web Development
               </Link>
             </div>
           </div>
           </div>
         </div>
-    </main>
   );
 }

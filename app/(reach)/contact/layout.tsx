@@ -1,4 +1,4 @@
-import MotionWrap from "@/components/transitions/motionwrap";
+import MainPageBody from "@/components/pagetemplates/mainpagebody";
 
 export const metadata = {
     title: "Contact",
@@ -7,10 +7,8 @@ export const metadata = {
 
 export default function ContactLayout({ children }: { children: React.ReactNode }) {
     return (
-        <MotionWrap key="contact">
-            <div className="childFirst min-w-screen min-h-screen mt-10 mx-10">
-                {children}
-            </div>
-        </MotionWrap>
+        <MainPageBody>
+            {children}
+        </MainPageBody>
     );
 }
