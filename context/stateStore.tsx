@@ -4,6 +4,8 @@ interface StateStore {
     urlToUse: string;
     loading: boolean;
     setLoading: (loading: boolean) => void;
+    widthQuery: number;
+    setWidthQuery: (width: number) => void;
 }
 
 export const useStateStore = create<StateStore>((set) => ({
@@ -13,4 +15,6 @@ export const useStateStore = create<StateStore>((set) => ({
     : '',
     loading: false,
     setLoading: (loading) => set({loading}),
+    widthQuery: 0,
+    setWidthQuery: (width) => set({ widthQuery: width }),
 }));

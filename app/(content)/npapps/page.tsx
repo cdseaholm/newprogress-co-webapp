@@ -4,6 +4,7 @@ import openInNewTab from '@/components/listeners/OpenInNewTab';
 import Link from 'next/link';
 import React from 'react';
 import { useModalStore } from '@/context/modalStore';
+import MainChild from '@/components/pagetemplates/mainchild';
 
 const NPAppsPage = () => {
 
@@ -31,48 +32,55 @@ const NPAppsPage = () => {
         })
     }
 
+    const [appSelectedFlex, setAppSelectedFlex] = React.useState('');
+
     return (
-        <div className='childFirst min-w-screen min-h-screen my-10 mx-10'>
-            <div className='flex justify-evenly flex-col items-start space-y-4'>
-                <div className="flex justify-center">
-                    <h1 className="text-2xl">New Progress Applications</h1>
-                </div>
-                <div className="py-10">
+        <MainChild>
+            <div className='flex flex-col justify-start items-center space-y-4 w-full h-full p-5'>
+                <h1 className="text-center text-2xl">
+                    {`New Progress Applications/Sites/Projects`}
+                </h1>
+                <div className="flex flex-col w-2/3 justify-start items-center space-y-2 border border-neutral-500 rounded-md py-2">
                     {npapps.map((app, index) => (
-                    <div key={index} className='space-y-2 pb-5'>
-                        <div onClick={() => {
-                            toggleApp(index);
-                        }}>
-                            <h2 className="text-2xl underline hover:text-slate-300 cursor-pointer">{app.name}</h2>
+                        <div key={index} className='flex flex-col w-full  rounded-md justify-center items-center text-start space-y-2 h-full px-2 transition-ease-300'>
+                            <div onClick={() => {
+                                toggleApp(index);
+                                setAppSelectedFlex(app.name);
+                            }} className='flex flex-row w-full h-full justify-center justify-center text-start p-2 m-2 rounded-md hover:bg-neutral-200 hover:underline cursor-pointer text-x1 md:text-2xl'>
+                                <h2>
+                                    {app.name}
+                                </h2>
+                            </div>
+                            {npDropdown[index] && app.name !== 'Harbor' && 
+                                <div className={`flex flex-col justify-center items-center text-start bg-neutral-300 rounded-md space-y-2 p-2 transition-ease-300 ${npDropdown[index]}`}>
+                                    <p>
+                                        {app.description}
+                                    </p>
+                                    {app.name !== "Gamr App" && app.name !== "Harbor" &&
+                                    <div onClick={() => openInNewTab(`${app.link}`)} className="cursor-pointer hover:text-slate-600/90">
+                                        Github Link
+                                    </div>
+                                    }
+                                </div>
+                            }
+                            {npDropdown[index] && app.name === "Harbor" &&
+                                <div className='flex flex-col justify-center items-center text-start bg-neutral-300 rounded-md space-y-2 p-2'>
+                                    <span style={{display: 'inline'}}>The internet is imense nowdays. It is like a vast ocean, and if you are not careful, you can lose yourself out there. Instead of constantly fighting an unbeatable element, look for a safe Harbor, and take a rest. Harbor is a Personal and Professional Portfolio for any one to use. Have resumes you would like to display? Pull resumes into your Harbor. Love making videos on placing them on YouTube? Connect YouTube to your Harbor to showcase them. Want to make a list of your favorite summer recipes? Add lists to your harbor. Anything that is authentically you, professionally and personally, can be joined into one single stop for any one you would like to show your life to. No matter if your needs are showcasing your abilities, allowing friends to keep tabs on your life, promoting any and all projects/hobbies you have, or even showing a potential employer a much more rounded view of who you are, Harbor can help. No technical expertise needed, just bring yourself! </span> <span> Check out an example or join the waitlist below.</span>
+                                    <div>
+                                    <Link className='cursor-pointer text-blue-800 hover:text-slate-800' href={`/harbor`}>
+                                        Try the Beta here
+                                    </Link>
+                                    </div>
+                                    <div onClick={() => setSignUpModal(true)} className='cursor-pointer text-blue-800 hover:text-slate-800'>
+                                        Join the waitlist here
+                                    </div>
+                                </div>
+                            }
                         </div>
-                        <>
-                        {npDropdown[index] && app.name !== 'Harbor' && 
-                        <>
-                        <p className="pl-5 pb-10">{app.description}</p>
-                        {app.name !== "Gamr App" && app.name !== "Harbor" &&
-                        <div onClick={() => openInNewTab(`${app.link}`)} className="pl-10 pb-10 cursor-pointer hover:text-slate-600/90">Github Link</div>
-                        }
-                        </>
-                        }
-                        {npDropdown[index] && app.name === "Harbor" &&
-                            <>
-                            <span style={{display: 'inline'}}>The internet is imense nowdays. It is like a vast ocean, and if you are not careful, you can lose yourself out there. Instead of constantly fighting an unbeatable element, look for a safe Harbor, and take a rest. Harbor is a Personal and Professional Portfolio for any one to use. Have resumes you would like to display? Pull resumes into your Harbor. Love making videos on placing them on YouTube? Connect YouTube to your Harbor to showcase them. Want to make a list of your favorite summer recipes? Add lists to your harbor. Anything that is authentically you, professionally and personally, can be joined into one single stop for any one you would like to show your life to. No matter if your needs are showcasing your abilities, allowing friends to keep tabs on your life, promoting any and all projects/hobbies you have, or even showing a potential employer a much more rounded view of who you are, Harbor can help. No technical expertise needed, just bring yourself! </span> <span> Check out an example or join the waitlist below.</span>
-                            <div>
-                            <Link className='cursor-pointer text-blue-800 hover:text-slate-800' href={`/harbor`}>
-                                Try the Beta here
-                            </Link>
-                            </div>
-                            <div onClick={() => setSignUpModal(true)} className='cursor-pointer text-blue-800 hover:text-slate-800'>
-                                Join the waitlist here
-                            </div>
-                            </>
-                        }
-                        </>
-                    </div>
                     ))}
                 </div>
             </div>
-        </div>
+        </MainChild>
     );
 };
 
