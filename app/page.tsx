@@ -2,14 +2,13 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import useMediaQuery from '@/components/listeners/WidthSettings';
 import Link from 'next/link';
+import { useStateStore } from '@/context/stateStore';
   
 
 export default function Home() {
   const [isShowing, setIsShowing] = React.useState(false);
     const router = useRouter();
-    const isBreakpoint = useMediaQuery(768);
 
   const navigateToNPApps = () => {
     setIsShowing(true);
@@ -27,21 +26,20 @@ export default function Home() {
   
 
   return (
-      <div className={`landing-page ${isShowing ? 'slide-up' : ''}`}>
-        <div className={`flex px-5 py-5 md:py-8`}>
-          <div className='min-h-screen min-w-screen my-10 mx-10'>
-            <h1 className={`flex flex-start text-6xl md:text-8xl mt-2 font-semibold text-slate-700`}>New Progress</h1>
-            <h2 className={`flex ${isBreakpoint ? 'text-xl' : 'text-2xl'} font-semibold text-slate-700 pb-20`}>A New Way to Make Progress</h2>
-            <div className='flex flex-row items-center space-x-10'>
-              <Link className={`flex flex-row text-sm p-2 md:text-md md:p-3 bg-slate-600/70 text-white rounded-lg `} href={'/npapps'}>
-                New Progress Applications
-              </Link>
-              <Link className={`flex flex-row text-sm p-2 md:text-md md:p-3 bg-slate-600/70 text-white rounded-lg`} href={'/webdevelopment'}>
-                New Progress Web Development
-              </Link>
-            </div>
-          </div>
-          </div>
-        </div>
+    <div className={`landing-page ${isShowing ? 'slide-up' : ''} flex flex-col justify-center items-center text-center w-full`}>
+      <h1 className={`text-6xl md:text-8xl mt-2 font-semibold text-slate-700`}>
+        New Progress
+      </h1>
+      <div className='border-b border-neutral-500 py-2' style={{width: '80%', height: '2px'}}/>
+      <h2 className={`text-xl md:text-2xl font-semibold text-slate-700 pb-20`}>
+        A New Way to Make Progress
+      </h2>
+      <Link className={`flex flex-row text-sm p-2 md:text-md md:p-3 bg-slate-600/70 text-white rounded-lg w-2/3 justify-center items-center mb-5`} href={'/npapps'}>
+        New Progress Applications
+      </Link>
+      <Link className={`flex flex-row text-sm p-2 md:text-md md:p-3 bg-slate-600/70 text-white rounded-lg w-2/3 justify-center items-center`} href={'/webdevelopment'}>
+        New Progress Web Development
+      </Link>
+    </div>
   );
 }

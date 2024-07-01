@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import Navbar from "../nav/Navbar";
 import HarborNavbar from "../nav/HarborNavBar";
+import FooterNavBar from "../footer/footerNavbar";
 
 const MainPageBody = ({children}: {children: React.ReactNode}) => {
 
@@ -10,18 +11,7 @@ const MainPageBody = ({children}: {children: React.ReactNode}) => {
 
     return (
       <div className={`childFirst h-full w-full`}>
-        {pathname !== null && !pathname.includes('harbor') && 
-          <>
-            <Navbar />
-            {children}
-          </>
-        }
-        {pathname !== null && pathname.includes('harbor') &&
-          <>
-            <HarborNavbar />
-            {children}
-          </>
-        }
+          {children}
       </div>
     );
   };

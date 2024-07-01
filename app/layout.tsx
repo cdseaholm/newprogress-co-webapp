@@ -12,7 +12,7 @@ export const metadata: Metadata ={
   description: "New Progress Co is an Multi-Purpose Development Company that specializes in Web Development, Mobile Development, and App Development"
 }
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <html lang="en">

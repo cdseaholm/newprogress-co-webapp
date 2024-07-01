@@ -3,35 +3,12 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import useMediaQuery from '../listeners/WidthSettings';
 import { SocialIcon } from 'react-social-icons';
 import openInNewTab from '../listeners/OpenInNewTab';
 
 const HarborNavbar = () => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const toggle = () => {
-    setOpen((prevState) => !prevState);
-  };
-  const [isHovered, setIsHovered] = useState(false);
-  const [clicked, setClicked] = useState(false);
-
-  const imageRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    const handleOutsideClick = (event: { target: any; }) => {
-      if (!imageRef.current || !imageRef.current.contains(event.target as HTMLDivElement)) {
-        if (!clicked) return;
-        const imageClick = () => {
-          setIsHovered(!isHovered);
-          setClicked(!clicked);
-        };
-        imageClick();
-      }
-    };
-    window.addEventListener('mousedown', handleOutsideClick);
-    return () => window.removeEventListener('mousedown', handleOutsideClick);
-  }, [clicked, imageRef]);
 
   const linkText = pathname === '/services' ? 'New Progress Apps' : 'New Progress Services';
 
@@ -91,7 +68,6 @@ const style = {
 
 function Sidenav({ open, toggle, children }: { open: boolean; toggle: () => void; children: React.ReactNode }) {
   const ref = React.useRef<HTMLDivElement>(null);
-  const isBreakpoint = useMediaQuery(768);
 
   React.useEffect(() => {
     const handleOutsideClick = (event: { target: any; }) => {

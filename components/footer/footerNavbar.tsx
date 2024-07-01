@@ -1,16 +1,14 @@
 'use client'
 
+import { useStateStore } from '@/context/stateStore';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import useMediaQuery from '../listeners/WidthSettings';
-import path from 'path';
 
 const FooterNavBar = () => {
     const pathname = usePathname();
-    const breakpoint = useMediaQuery(768);
+    const breakpoint = useStateStore((state) => state.widthQuery) <= 768 ? true : false;
 
     return (
-        <>
         <nav className={`flex justify-center flex-wrap ${breakpoint ? 'py-2' : ''} pb-5 space-x-4`}>
             {!breakpoint && pathname !== '/' &&
             [
@@ -23,7 +21,6 @@ const FooterNavBar = () => {
                 </div>
             ))}
         </nav>
-        </>
     );
 }
 
