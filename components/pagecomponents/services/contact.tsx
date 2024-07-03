@@ -12,11 +12,11 @@ export default function ContactComponent() {
             <div className="flex flex-row">
                 <FiMail />
             </div>
-            <div className="flex flex-row justify-start items-start rounded-md w-full h-2/3 font-bold">
-                {`Contact`}
+            <div className="flex flex-row justify-start items-start rounded-md w-full h-full font-bold">
+                {`Email: cdseaholm@gmailcom or newprogresscs@gmail.com`}
             </div>
             <div className="flex flex-row">
-                {`description`}
+                {``}
             </div>
         </div>
     );
