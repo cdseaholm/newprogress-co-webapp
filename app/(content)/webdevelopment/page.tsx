@@ -21,11 +21,11 @@ export default function ServicesPage() {
 
     return (
         <MainChild>
-            <div className="flex flex-col justify-center items-center p-2">
+            <div className="flex flex-col justify-center items-center p-2" style={{overflow: 'hidden'}}>
                 <h1 className="text-2xl p-5">
                     Web Development Services
                 </h1>
-                <div className="flex flex-col space-y-5 w-full items-center">
+                <div className="flex flex-col space-y-5 w-full items-center h-full" style={{overflow: 'auto'}}>
                     <ServicesComponent />
                     <PricingComponent />
                     <ContactComponent />

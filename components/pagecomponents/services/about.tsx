@@ -13,10 +13,10 @@ export default function AboutComponent() {
                 <FiInfo />
             </div>
             <div className="flex flex-row justify-start items-start rounded-md w-full h-2/3 font-bold">
-                {`About`}
+                {`I can help you modernize or update a website. Work out some kinks or build you one from scratch. Additionally, I can take care of all the technical work for you after the site is completed. It can be as complex as Just depends on what you need. I love building sites and seeing people pleased with my work. I'd love to help you out!`}
             </div>
             <div className="flex flex-row">
-                {`description`}
+                {``}
             </div>
         </div>
     );

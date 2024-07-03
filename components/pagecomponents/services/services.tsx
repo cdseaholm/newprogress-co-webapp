@@ -12,11 +12,14 @@ export default function ServicesComponent() {
             <div className="flex flex-row">
                 <FiClipboard />
             </div>
-            <div className="flex flex-row justify-start items-start rounded-md w-full h-2/3 font-bold">
-                {`Services`}
+            <div className="flex flex-row justify-start items-start rounded-md w-full h-2/3 font-bold text-center">
+                <p>Logo Design</p>
+                <p>Full Website Design</p>
+                <p>Website Maintenance/Edits and Bug fixes</p>
+                <p>Site Hosting</p>
             </div>
             <div className="flex flex-row">
-                {`description`}
+                {``}
             </div>
         </div>
     );
