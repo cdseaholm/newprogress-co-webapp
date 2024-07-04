@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import React, { useEffect } from "react";
+import React from "react";
 import AnimateWrapper from "@/components/utility/animateAndAuthWrapper";
 import PageWrapper from "@/components/utility/pageWrapper";
 import { Metadata } from "next";

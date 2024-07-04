@@ -17,6 +17,13 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        'themeStone': '#687864',
+        'themeWater': '#31708E',
+        'themeBlue': '#5085A5',
+        'themeAcqua': '#8FC1E3',
+        'themeWhite': '#F7F9FB',
+      }
     },
   },
   darkMode: "class",

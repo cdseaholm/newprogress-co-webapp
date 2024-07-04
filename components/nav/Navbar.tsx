@@ -6,115 +6,63 @@ import { usePathname } from 'next/navigation';
 import { SocialIcon } from 'react-social-icons';
 import openInNewTab from '../listeners/OpenInNewTab';
 import { useStateStore } from '@/context/stateStore';
+import { FiMail } from 'react-icons/fi';
+import Image from 'next/image';
+import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/react';
 
 const SidenavMobile = () => {
-  const [open, setOpen] = useState(false);
+
   const pathname = usePathname();
+  const isBreakpoint = useStateStore((state) => state.widthQuery) <= 768 ? true : false;
 
-  const linkText = pathname === '/webdevelopment' ? 'New Progress Apps' : 'New Progress Web Development';
-
-  const linkRef = pathname === '/webdevelopment' ? '/npapps' : '/webdevelopment';
+  const imSize = isBreakpoint ? 65 : 100;
   
   return (
     pathname === '/' ?
     (
       null
     ) : (
-      <div className='flex flex-between items-center'>
-        <div className='flex items-center ml-5 my-2 px-6 pt-2'>
-          {pathname !== '/' &&
-          <Link className={`text-black font-medium text-sm ${open ? 'text-transparent' : 'text-black'}`} href={`${linkRef}`}>
-            {linkText}
+      <div className={`flex flex-row md:p-1 justify-evenly items-center w-full md:px-2 md:px-20 border-b border-themeStone py-2`}>
+          <Link href='/' className='hover:bg-themeAcqua rounded-full' title='home'>
+              <div style={{ width: `${imSize}px`, height: `${imSize}px`}} className='flex items-center justify-center'>
+                <Image src='/images/logoBG.png' alt='New Progress Co Logo' className='rounded-full' priority sizes='auto' width={imSize} height={imSize} />
+              </div>
           </Link>
-          }
-          {pathname !== '/' &&
-          <>
-          <div className={`mx-5 my-2 ${open ? 'text-transparent' : 'text-black'}`}>|</div>
-          <div>
-            <Link className={`text-black font-medium text-sm ${open ? 'text-transparent' : 'text-black'}`} href='/'>
-              Home
-            </Link>
+          <div className={`md:mx-5 mx-2 my-2`}>
+            |
           </div>
-          </>
-          }
+          <Link className={`text-xs md:text-base hover:text-themeStone/80 rounded-lg p-1 font-semibold ${pathname === '/npapps' ? 'underline font-bold text-themeStone hover:cursor-default hover:text-themeStone/80' : 'hover:bg-themeAcqua hover:text-black/70'}`} href={`/npapps`}>
+            {'NP Apps'}
+          </Link>
+          <div className={`md:mx-5 mx-2 my-2`}>
+            |
+          </div>
+          <Link className={`text-xs md:text-base hover:text-themeStone/80 rounded-lg p-1 font-semibold ${pathname === '/webdevelopment' ? 'underline font-bold text-themeStone hover:cursor-default hover:text-themeStone/80' : 'hover:bg-themeAcqua hover:text-black/70'}`} href={`/webdevelopment`}>
+            {'Web Development'}
+          </Link>
+        <div className={`md:mx-5 mx-2 my-2`}>
+            |
+          </div>
+          {isBreakpoint ? (<Dropdown backdrop="blur">
+            <DropdownTrigger>
+              <Button type='button' variant='flat' className={`hover:bg-themeAcqua bg-transparent min-w-6 px-2`}>
+                <FiMail className="text-black" title="Email" size={15}/>
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu variant="faded" aria-label="Static Actions" className="bg-stone-200 rounded-sm">
+              <DropdownItem className="text-black hover:underline px-1 rounded-md flex-wrap" textValue="email: michael@MDCPA-LLC.com">
+                <span>newprogresscs@gmail.com</span>
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+          ) : (
+            <Button type='button' variant='flat' className={`hover:bg-themeAcqua bg-transparent min-w-10 px-1`}>
+              <p className='font-semibold text-lg'>Contact</p>
+            </Button>
+          )}
         </div>
-      </div>
     )
   );
 };
-
-const style = {
-  closeIcon: `absolute top-1 focus:outline-none right-3 text-3xl text-white cursor-pointer`,
-  sidenav: {
-    open: `w-5/12 md:w-60 bg-slate-900/90 text-white overflow-x-hidden`,
-    close: `w-0 bg-gray-800 text-white overflow-x-hidden`,
-    default: `h-screen fixed z-30 top-0 left-0 transition-all ease duration-200`,
-  },
-  icon: {
-    height: 35,
-    width: 35,
-    margin: 5,
-    border: '1px solid white',
-    borderRadius: '50%',
-    alignContent: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
-  },
-  iconClose: {
-    height: 2,
-    width: 2,
-    margin: 0,
-    borderRadius: '50%',
-    overflow: 'hidden',
-    color: 'transparent',
-  }
-};
-
-function Sidenav({ open, toggle, children }: { open: boolean; toggle: () => void; children: React.ReactNode }) {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const breakpoint = useStateStore((state) => state.widthQuery) <= 768 ? true : false;
-
-  React.useEffect(() => {
-    const handleOutsideClick = (event: { target: any; }) => {
-      if (!ref.current || !ref.current.contains(event.target as HTMLDivElement)) {
-        if (!open) return;
-        toggle();
-      }
-    };
-    window.addEventListener('mousedown', handleOutsideClick);
-    return () => window.removeEventListener('mousedown', handleOutsideClick);
-  }, [open, ref, toggle]);
-
-  return (
-    <aside
-      ref={ref}
-      className={`${style.sidenav.default} 
-        ${open ? style.sidenav.open : style.sidenav.close}`}
-    >
-      <button aria-label="Close" className={style.closeIcon} onClick={toggle}>
-        &times;
-      </button>
-      <div className='mx-3 divide-y divide-solid width-4/6'>
-        <div className='px-10 rounded-lg px-3 mt-8 pt-5 pb-7 text-slate-200 text-xs'>
-          Carl Seaholm&apos;s Portfolio
-        </div>
-        <div />
-        </div>
-        <div className='divide-y divide-solid'>
-          <div className="my-5">{children}
-        </div>
-        <div className='justify-evenly mx-3 pt-5 flex flex-row items-center'>
-          <div className='cursor-pointer' onClick={() => openInNewTab('http://www.github.com/cdseaholm')}>
-            <SocialIcon style={style.icon} network='github'/>
-          </div>
-          <p>|</p>
-          <div className='cursor-pointer' onClick={() => openInNewTab('https://www.linkedin.com/in/carlseaholm/')}>
-          <SocialIcon style={open ? style.icon : style.iconClose} network='linkedin' />
-          </div>
-        </div>
-      </div>
-    </aside>
-  );
-}
 
 export default SidenavMobile;
