@@ -11,7 +11,7 @@ export function Providers({children}: { children: React.ReactNode }) {
     <>
       <ModalSignUp />
       <AlertModal />
-      <NextUIProvider style={{height: '100%', width: '100%'}}>
+      <NextUIProvider style={{height: '100%', width: '100%', overflow: 'hidden'}}>
         {children}
       </NextUIProvider>
     </>

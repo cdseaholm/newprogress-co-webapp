@@ -8,6 +8,10 @@ import { useStateStore } from "@/context/stateStore";
 import { useRef, useEffect } from "react";
 import FooterNavBar from "../footer/footerNavbar";
 import Header from "../nav/header";
+import { Livvic } from 'next/font/google';
+import path from "path";
+  
+const livvic = Livvic({subsets: ['latin'], weight: '400', style: 'normal'});
 
 
 export default function PageWrapper({children}: Readonly<{children: React.ReactNode;}>) {
@@ -35,17 +39,17 @@ export default function PageWrapper({children}: Readonly<{children: React.ReactN
     }, [setWidthQuery]);
 
     return (
-        <div className="bg-white/50 h-dvh">
+        <div className={`${pathname === '/' ? 'bg-themeWhite/50' : 'bg-themeWhite/80'} h-dvh ${livvic.className} overflow-hidden`}>
             <Providers>
                 <MotionWrap motionKey={pathname ?? ""}>
-                    <main className='flex flex-col h-dvh px-2 justify-center w-full' ref={targetRef}>
+                    <main className='flex flex-col h-dvh w-full overflow-hidden' ref={targetRef}>
                         {pathname !== null &&  pathname !== '/' &&
                             <Header />
                         }
                             {children}
-                        {pathname !== null && !isBreakpoint && pathname !== '/' &&
+                        {/**{pathname !== null && !isBreakpoint && pathname !== '/' &&
                             <FooterNavBar />
-                        }
+                        }*/}
                     </main>
                 </MotionWrap>
             </Providers>

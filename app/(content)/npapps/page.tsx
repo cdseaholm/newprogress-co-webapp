@@ -5,6 +5,7 @@ import Link from 'next/link';
 import React from 'react';
 import { useModalStore } from '@/context/modalStore';
 import MainChild from '@/components/pagetemplates/mainchild';
+import InPageHeaderWrap from '@/components/pagetemplates/inPageHeaderWrap';
 
 const NPAppsPage = () => {
 
@@ -36,11 +37,8 @@ const NPAppsPage = () => {
 
     return (
         <MainChild>
-            <div className='flex flex-col justify-start items-center space-y-4 w-full h-full p-5'>
-                <h1 className="text-center text-2xl">
-                    {`New Progress Applications/Sites/Projects`}
-                </h1>
-                <div className="flex flex-col w-2/3 justify-start items-center space-y-2 border border-neutral-500 rounded-md py-2">
+            <InPageHeaderWrap>
+                <div className="flex flex-col w-2/3 justify-start items-center space-y-2 border border-themeBlack rounded-md py-2 text-themeWhite">
                     {npapps.map((app, index) => (
                         <div key={index} className='flex flex-col w-full  rounded-md justify-center items-center text-start space-y-2 h-full px-2 transition-ease-300'>
                             <div onClick={() => {
@@ -79,7 +77,7 @@ const NPAppsPage = () => {
                         </div>
                     ))}
                 </div>
-            </div>
+            </InPageHeaderWrap>
         </MainChild>
     );
 };

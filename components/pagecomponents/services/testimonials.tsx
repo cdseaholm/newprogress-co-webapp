@@ -14,10 +14,7 @@ export default function TestimonialComponent() {
     }
 
     return (
-        <div className={`relative flex flex-col rounded-md items-start justify-evenly ${isBreakpoint ? 'w-full' : 'w-4/5'} border border-neutral-600 p-2 space-y-2`}>
-            <div className="flex flex-row">
-                <FiBookOpen />
-            </div>
+        <div className={`relative flex flex-col rounded-md items-start justify-evenly ${isBreakpoint ? 'w-full' : 'w-4/5'} h-full space-y-2`}>
             <div className="flex flex-row justify-start items-start rounded-md w-full h-full font-bold space-x-5" >
                 <p>{`MD CPA`}</p>
                 <Link className="hover:underline hover:text-blue-500" href={''} onClick={() => openInNewTab('https://www.mdcpa-llc.com')}>

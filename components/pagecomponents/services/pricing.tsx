@@ -8,10 +8,7 @@ export default function PricingComponent() {
     const isBreakpoint = useStateStore((state) => state.widthQuery) <= 768 ? true : false;
 
     return (
-        <div className={`flex flex-col rounded-md items-start justify-evenly ${isBreakpoint ? 'w-full' : 'w-4/5'} border border-neutral-600 p-2 space-y-2 h-full`}>
-            <div className="flex flex-row">
-                <FiDollarSign />
-            </div>
+        <div className={`flex flex-col rounded-md items-start justify-evenly ${isBreakpoint ? 'w-full' : 'w-4/5'} w-full space-y-2 h-full`}>
             <div className="flex flex-col justify-start items-start rounded-md w-full h-full space-y-2">
                 <li className="font-bold">
                     Logo Design: <span className="font-normal">$100 (Mostly to cover work and certain tools)</span>

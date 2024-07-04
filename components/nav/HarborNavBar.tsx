@@ -19,7 +19,7 @@ const HarborNavbar = () => {
     <div className='flex flex-between items-center'>
       <div className='flex items-center ml-5 mt-5 px-6 pt-2'>
         {pathname !== '/' &&
-        <Link className={`text-black font-medium text-sm ${open ? 'text-transparent' : 'text-black'}`} href={`${linkRef}`}>
+        <Link className={`text-themeBlack p-2 font-medium text-sm ${open ? 'text-transparent' : 'text-themeBlack'}`} href={`${linkRef}`}>
           {linkText}
         </Link>
   }
@@ -27,7 +27,7 @@ const HarborNavbar = () => {
         <>
         <div className={`mx-5 my-2 ${open ? 'text-transparent' : 'text-black'}`}>|</div>
         <div>
-          <Link className={`text-black font-medium text-sm ${open ? 'text-transparent' : 'text-black'}`} href='/'>
+          <Link className={`text-themeBlack font-medium text-sm ${open ? 'text-transparent' : 'text-themeBlack'}`} href='/'>
             Home
           </Link>
         </div>
