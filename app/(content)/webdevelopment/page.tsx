@@ -1,6 +1,5 @@
 'use client'
 
-
 import AboutComponent from "@/components/pagecomponents/services/about";
 import ContactComponent from "@/components/pagecomponents/services/contact";
 import DropDownNav from "@/components/pagecomponents/services/pageNav/dropDownNav";
@@ -34,7 +33,9 @@ export default function ServicesPage() {
         <FiMail key={'contact'}/>,
         <FiBookOpen key={'about'}/>,
         <FiMic key={'testimonials'}/>
-    ]
+    ];
+
+    const [priceUpFront, setPriceUpFront] = useState(true);
 
     return (
         <MainChild>
@@ -45,11 +46,11 @@ export default function ServicesPage() {
                     ) : (  
                         <StaticNav tabs={tabs} parent={"webDevelopment"} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons}  />
                     )}
-                    <div className="flex flex-col space-y-5 w-full items-center h-full scrollbar-thin scrollbar-webkit p-1 border-l border-themeStone" style={{overflow: 'auto'}}>
+                    <div className="flex flex-col space-y-5 w-full items-center h-full p-1 border-l border-themeStone" style={{overflow: 'hidden'}}>
                             {currentSelection === 0 ?       
                                 <ServicesComponent />
                             : currentSelection === 1 ?
-                                <PricingComponent />
+                                <PricingComponent priceUpFront={priceUpFront} setPriceUpFront={setPriceUpFront} />
                             : currentSelection === 2 ?
                                 <ContactComponent />
                             : currentSelection === 3 ?
