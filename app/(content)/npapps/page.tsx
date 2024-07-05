@@ -38,13 +38,13 @@ const NPAppsPage = () => {
     return (
         <MainChild>
             <InPageHeaderWrap>
-                <div className="flex flex-col w-2/3 justify-start items-center space-y-2 border border-themeBlack rounded-md py-2 text-themeWhite">
+                <div className="flex flex-col w-full h-full justify-start items-center space-y-2 border border-themeStone rounded-md py-2 text-black scrollbar-thin scrollbar-webkit" style={{overflow: 'auto'}}>
                     {npapps.map((app, index) => (
                         <div key={index} className='flex flex-col w-full  rounded-md justify-center items-center text-start space-y-2 h-full px-2 transition-ease-300'>
                             <div onClick={() => {
                                 toggleApp(index);
                                 setAppSelectedFlex(app.name);
-                            }} className='flex flex-row w-full h-full justify-center justify-center text-start p-2 m-2 rounded-md hover:bg-neutral-200 hover:underline cursor-pointer text-x1 md:text-2xl'>
+                            }} className='flex flex-row w-full justify-center justify-center text-start p-2 m-2 rounded-md hover:bg-neutral-200 hover:underline cursor-pointer text-x1 md:text-2xl'>
                                 <h2>
                                     {app.name}
                                 </h2>
@@ -65,9 +65,9 @@ const NPAppsPage = () => {
                                 <div className='flex flex-col justify-center items-center text-start bg-neutral-300 rounded-md space-y-2 p-2'>
                                     <span style={{display: 'inline'}}>The internet is imense nowdays. It is like a vast ocean, and if you are not careful, you can lose yourself out there. Instead of constantly fighting an unbeatable element, look for a safe Harbor, and take a rest. Harbor is a Personal and Professional Portfolio for any one to use. Have resumes you would like to display? Pull resumes into your Harbor. Love making videos on placing them on YouTube? Connect YouTube to your Harbor to showcase them. Want to make a list of your favorite summer recipes? Add lists to your harbor. Anything that is authentically you, professionally and personally, can be joined into one single stop for any one you would like to show your life to. No matter if your needs are showcasing your abilities, allowing friends to keep tabs on your life, promoting any and all projects/hobbies you have, or even showing a potential employer a much more rounded view of who you are, Harbor can help. No technical expertise needed, just bring yourself! </span> <span> Check out an example or join the waitlist below.</span>
                                     <div>
-                                    <Link className='cursor-pointer text-blue-800 hover:text-slate-800' href={`/harbor`}>
+                                    {/**<Link className='cursor-pointer text-blue-800 hover:text-slate-800' href={`/harbor`}>
                                         Try the Beta here
-                                    </Link>
+                                    </Link>*/}
                                     </div>
                                     <div onClick={() => setSignUpModal(true)} className='cursor-pointer text-blue-800 hover:text-slate-800'>
                                         Join the waitlist here

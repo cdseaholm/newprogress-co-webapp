@@ -44,7 +44,7 @@ export default function DropDownNav({ open, setOpen, tabs, handleClickedTab, par
                     ))}
                 </DropdownMenu>
             </Dropdown>
-            <p className="text-gray-900 font-semibold text-lg">
+            <p className="text-gray-900 font-semibold text-lg underline">
                 {tabs[currentSelection]}
             </p>
       </div>

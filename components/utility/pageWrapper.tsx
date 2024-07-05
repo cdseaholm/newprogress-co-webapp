@@ -1,15 +1,12 @@
 'use client'
 
 import { Providers } from "@/app/providers";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { usePathname } from "next/navigation";
 import MotionWrap from "../transitions/motionwrap";
 import { useStateStore } from "@/context/stateStore";
 import { useRef, useEffect } from "react";
-import FooterNavBar from "../footer/footerNavbar";
 import Header from "../nav/header";
 import { Livvic } from 'next/font/google';
-import path from "path";
   
 const livvic = Livvic({subsets: ['latin'], weight: '400', style: 'normal'});
 

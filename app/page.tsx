@@ -4,7 +4,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useStateStore } from '@/context/stateStore';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 
 export default function Home() {
   const [isShowing, setIsShowing] = React.useState(false);
