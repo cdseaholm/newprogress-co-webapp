@@ -6,6 +6,10 @@ interface StateStore {
     setLoading: (loading: boolean) => void;
     widthQuery: number;
     setWidthQuery: (width: number) => void;
+    accordianSignal: string;
+    setAccordianSignal: (signal: string) => void;
+    panelHeights: number[];
+    setPanelHeights: (heights: number[]) => void;
 }
 
 export const useStateStore = create<StateStore>((set) => ({
@@ -17,4 +21,8 @@ export const useStateStore = create<StateStore>((set) => ({
     setLoading: (loading) => set({loading}),
     widthQuery: 0,
     setWidthQuery: (width) => set({ widthQuery: width }),
+    accordianSignal: '1',
+    setAccordianSignal: (signal) => set({accordianSignal: signal}),
+    panelHeights: [],
+    setPanelHeights: (heights) => set({panelHeights: heights})
 }));

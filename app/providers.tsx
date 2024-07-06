@@ -4,6 +4,7 @@
 import {NextUIProvider} from '@nextui-org/react'
 import ModalSignUp from '@/components/modals/signupModal';
 import AlertModal from '@/components/modals/alerts/alertModal';
+import Contact from '@/components/modals/contact';
 
 export function Providers({children}: { children: React.ReactNode }) {
 
@@ -11,6 +12,7 @@ export function Providers({children}: { children: React.ReactNode }) {
     <>
       <ModalSignUp />
       <AlertModal />
+      <Contact />
       <NextUIProvider style={{height: '100%', width: '100%', overflow: 'hidden'}}>
         {children}
       </NextUIProvider>
