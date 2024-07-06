@@ -1,11 +1,11 @@
 'use client'
 
-import React, { use, useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react'
-import Image from "next/legacy/image"
-import { Button, Dropdown, DropdownTrigger } from '@nextui-org/react';
+import { Button } from '@nextui-org/react';
+import ImageFormat from './imageFormat';
 
-export function EmblaCarousel() {
+export function EmblaCarousel({accordianSignal}: {accordianSignal: string}) {
 
     const images = [
         ["/images/logoLarge.png",
@@ -61,9 +61,8 @@ export function EmblaCarousel() {
     const groupedTitles = selectedIndex === 3 ? [...titles[0], ...titles[1], ...titles[2]] : titles[selectedIndex];
 
     return (
-        <div className="flex flex-col items-center justify-evenly h-full w-full border border-themeStone rounded-md py-2 space-y-2">
-            <div className='flex flex-row items-center justify-evenly w-full'>
-                <p className='underline font-semibold text-base md:text-2xl'>Logo Creation</p>
+        <div className={`flex flex-col items-center justify-evenly h-full w-full ${accordianSignal === '3' ? 'border border-themeStone' : ''} rounded-md py-2 space-y-2`}>
+            <div className='flex flex-row items-center justify-end w-full'>
                 <select className="bg-transparent hover:bg-themeAcqua hover:underline text-xs md:text-sm rounded-md border border-themeStone" defaultValue={'4'} onChange={(e) => {
                     setSelectedIndex(Number((e.target as HTMLSelectElement).value));
                 }}>
@@ -80,9 +79,7 @@ export function EmblaCarousel() {
                         <div className="relative flex flex-none flex-wrap lg:flex-nowrap w-full mx-10" key={image}>
                             <div className="overflow-hidden cursor-pointer w-full">
                                 <div className='flex flex-col items-center justify-center w-full h-full'>
-                                    <div style={{ position: 'relative', width: `${imSize}px`, height: `${imSize}px`}} key={index}>
-                                        <Image src={image} alt={`Logo Version ${index}`} width={imSize} height={imSize} className='rounded-full' placeholder='blur' blurDataURL={image}/>
-                                    </div>
+                                    <ImageFormat image={image} imSize={imSize} index={index} />
                                     <p className='text-sm md:text-base'>
                                         {groupedTitles[index]}
                                     </p>

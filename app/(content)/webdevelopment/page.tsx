@@ -48,7 +48,7 @@ export default function ServicesPage() {
                     )}
                     <div className="flex flex-col space-y-5 w-full items-center h-full p-1 border-l border-themeStone" style={{overflow: 'hidden'}}>
                             {currentSelection === 0 ?       
-                                <ServicesComponent />
+                                <ServicesComponent handleClickedTab={handleClickedTab} />
                             : currentSelection === 1 ?
                                 <PricingComponent priceUpFront={priceUpFront} setPriceUpFront={setPriceUpFront} />
                             : currentSelection === 2 ?

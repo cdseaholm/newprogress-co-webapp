@@ -11,6 +11,8 @@ interface ModalStore {
     setAlertParent: (alertParent: string) => void;
     alertConfirm: boolean;
     setAlertConfirm: (alertConfirm: boolean) => void;
+    modalOpen: string;
+    setModalOpen: (modalOpen: string) => void;
 }
 
 export const useModalStore = create<ModalStore>((set) => ({
@@ -24,4 +26,6 @@ export const useModalStore = create<ModalStore>((set) => ({
     setAlertParent: (alertParent) => set({alertParent}),
     alertConfirm: false,
     setAlertConfirm: (alertConfirm) => set({alertConfirm}),
+    modalOpen: '',
+    setModalOpen: (modalOpen) => set({modalOpen})
 }));
