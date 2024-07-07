@@ -38,17 +38,18 @@ export default function PageWrapper({children}: Readonly<{children: React.ReactN
     return (
         <div className={`${pathname === '/' ? 'bg-themeWhite/50' : 'bg-themeWhite/80'} h-dvh ${livvic.className} overflow-hidden`}>
             <Providers>
-                <MotionWrap motionKey={pathname ?? ""}>
-                    <main className='flex flex-col h-dvh w-full overflow-hidden' ref={targetRef}>
-                        {pathname !== null &&  pathname !== '/' &&
-                            <Header />
-                        }
-                            {children}
-                        {/**{pathname !== null && !isBreakpoint && pathname !== '/' &&
-                            <FooterNavBar />
-                        }*/}
-                    </main>
-                </MotionWrap>
+                <script src="../path/to/flowbite/dist/flowbite.min.js" defer/>
+                    <MotionWrap motionKey={pathname ?? ""}>
+                        <main className='flex flex-col h-dvh w-full overflow-hidden' ref={targetRef}>
+                            {pathname !== null &&  pathname !== '/' &&
+                                <Header />
+                            }
+                                {children}
+                            {/**{pathname !== null && !isBreakpoint && pathname !== '/' &&
+                                <FooterNavBar />
+                            }*/}
+                        </main>
+                    </MotionWrap>
             </Providers>
         </div>
     )

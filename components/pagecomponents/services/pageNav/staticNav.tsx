@@ -2,20 +2,18 @@
 
 import {Button} from "@nextui-org/react";
 import React from "react";
-import { IconType } from "react-icons/lib";
 
-export default function StaticNav({tabs, parent, handleClickedTab, currentSelection, icons}: {tabs: string[], parent: string, handleClickedTab: (index: number) => void, currentSelection: number, icons: JSX.Element[]}) {
+export default function StaticNav({tab, index, disabled, handleClickedTab, currentSelection, icons}: {tab: string, index: number, disabled: boolean, handleClickedTab: (index: number) => void, currentSelection: number, icons: JSX.Element[]}) {
+    
 
     return (
-        <div className="flex flex-col items-start justify-start my-3">
-            {tabs.map((tab, index) => (
-                <Button type="button" title={tab} variant='flat' className={`bg-transparent font-semi-bold text-base ${currentSelection === index ? 'underline font-bold text-themeStone hover:cursor-default' : 'hover:bg-themeAcqua'}`} key={index} onClick={() => handleClickedTab(index)} disabled={currentSelection === index ? true : false}>
-                    <div className="flex flex-row items-center justify-center space-x-2">
-                        <div>{icons[index]}</div>
-                        <div>{tab}</div>
-                    </div>
-                </Button>
-            ))}
+        <div className="tooltip-container" onClick={() => handleClickedTab(index)} key={index} id={`staticIcon${index}`}>
+            <Button type='button' variant='flat' className={`min-w-6 px-3 py-1 ${disabled ? 'cursor-default underline bg-themeAcqua/40' : 'hover:bg-themeAcqua bg-transparent'}`} isDisabled={disabled} onClick={() => handleClickedTab(index)}>
+                    {icons[index]}
+            </Button>
+            <span className="tooltip-text text-xs">
+                {tab}
+            </span>
         </div>
     )
 }

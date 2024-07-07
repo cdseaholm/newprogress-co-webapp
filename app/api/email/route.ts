@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
   */
     auth: {
       user: process.env.NEXT_PUBLIC_ADMIN_EMAIL,
-      pass: process.env.NEXT_PUBLIC_APP_PW,
+      pass: process.env.NEXT_PUBLIC_APP_P,
     },
   });
 

@@ -22,10 +22,7 @@ const PanelOne = ({panelKey}: {panelKey: number}) => {
     ];
 
     return (
-        <div className="flex flex-col justify-center items-center border border-themeStone rounded-md p-2 w-full h-full text-center" key={panelKey}>
-            <h2 className="text-semibold underline text-base md:text-lg">
-                {`Full Website Creation`}
-            </h2>
+        <div className="flex flex-col justify-center items-center border-b border-x border-themeStone rounded-b-md w-full h-full text-center" key={panelKey}>
             <p className="text-sm md:text-base font-normal">
                 {`Beginning with my own personal template and consolidated favorite libraries, I can give you a basic site with:`
                 }
@@ -68,7 +65,7 @@ const PanelTwo = ({handleClickedTab, panelKey}: {handleClickedTab: (index: numbe
     ];
 
     return (
-        <div className="flex flex-col justify-center items-center border border-themeStone rounded-md p-2 w-full h-full" key={panelKey}>
+        <div className="flex flex-col justify-center items-center border-b border-x border-themeStone rounded-b-md w-full h-full text-center" key={panelKey}>
             <p>
                 {`Included:`}
             </p>
@@ -91,7 +88,7 @@ const PanelThree = ({panelKey}: {panelKey: number}) => {
     const accordianSignal = useStateStore((state) => state.accordianSignal);
 
     return (
-        <div className="flex flex-col justify-start items-center border border-themeStone rounded-md px-2 w-full h-full" key={panelKey}>
+        <div className="flex flex-col justify-center items-center border-b border-x border-themeStone rounded-b-md w-full h-full text-center" key={panelKey}>
             <EmblaCarousel accordianSignal={accordianSignal} />
         </div>
     );
@@ -100,7 +97,7 @@ const PanelThree = ({panelKey}: {panelKey: number}) => {
 const PanelFour = ({handleClickedTab, panelKey}: {handleClickedTab: (index: number) => void, panelKey: number}) => {
 
     return (
-        <div className="flex flex-col justify-start items-center border border-themeStone rounded-md p-2 w-full text-center space-y-2" key={panelKey}>
+        <div className="flex flex-col justify-center items-center border-b border-x border-themeStone rounded-b-md w-full h-full text-center" key={panelKey}>
             <p>
                 {`Site Hosting is a crucial part of getting your site up and running. It's the final step in the process of getting your site live. If you'd like for me to handle it all, I can do that. If you'd like to handle it yourself, I can walk you through the process. `} 
                 <a className="text-themeBlue hover:underline hover:text-themeStone cursor-pointer" onClick={() => handleClickedTab(1)}>
@@ -123,15 +120,48 @@ const PanelFour = ({handleClickedTab, panelKey}: {handleClickedTab: (index: numb
     );
 }
 
+const PanelTitle = ({panelPoints, title}: {panelPoints: string[], title: string}) => {
+    return (
+        <div className="flex flex-col justify-start items-center w-4/5">
+            <h2 className="font-semibold underline text-xl md:text-2xl">
+                {title}
+            </h2>
+            <ul className="list-disc grid grid-cols-2 grid-rows-2 bg-themeWhite w-full" style={{listStylePosition: 'inside'}}
+            >
+                {panelPoints.map((point, index) => (
+                    <li className="text-sm md:text-base font-normal flex-wrap mx-2 my-1" key={index}>
+                        {point}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+
+
 export default function ServicesComponent({handleClickedTab}: {handleClickedTab: (index: number) => void}) {
 
     const isBreakpoint = useStateStore((state) => state.widthQuery) <= 768 ? true : false;
-    
+
+    const titles = [
+        `Full Website Creation`,
+        `Site Maintenance`,
+        `Logo Creation`,
+        `Site Hosting`
+    ];
+
+    const titlePoints = [
+        [`Flexible Pricing`, `Customizability`, `Basic site ready to go from Launch`, `Modern Styles and UI`],
+        [`Low cost`, `Wide Range of Available Options`, `Good for long term relationships`, `Good for quick one time needs`],
+        [`3 logos to begnin with`, `Customizability`, `Modern Styles and High Quality`, `Affordable prices`],
+        [`Good for Long term relationships`, `No hassle on client end`, `Affordable Prices`, `Strong site upkeep`]
+    ];
+
     const panelTitles = [
-        ['Full Website Creation'],
-        ['Site Maintenance'],
-        ['Logo Creation'],
-        ['Site Hosting']
+        <PanelTitle panelPoints={titlePoints[0]} title={titles[0]} key={0}/>,
+        <PanelTitle panelPoints={titlePoints[1]} title={titles[1]} key={1}/>,
+        <PanelTitle panelPoints={titlePoints[2]} title={titles[2]} key={2}/>,
+        <PanelTitle panelPoints={titlePoints[3]} title={titles[3]} key={3}/>
     ];
 
     const panels = [
@@ -144,11 +174,15 @@ export default function ServicesComponent({handleClickedTab}: {handleClickedTab:
     const heights = [350, 440, 300, 650];
 
     return (
-        <div className={`flex flex-col items-center justify-start font-bold scrollbar-thin scrollbar-webkit w-full border-t border-themeStone md:border-0`} style={{overflow: 'auto', maxHeight: '10000px'}}>
-            <p className="text-sm md:text-base text-center w-full md:w-4/5 py-5">
+        <div className={`flex flex-col items-center justify-start font-bold scrollbar-thin scrollbar-webkit w-full h-full p-2 pb-10`} style={{overflowY: 'auto', overflowX: 'hidden', maxHeight: '10000px'}}>
+            <div className="flex flex-col justify-start items-center w-4/5 my-12 md:my-16 lg:my-0"/>
+            <h2 className="font-semibold underline text-xl md:text-2xl">
+                Services
+            </h2>
+            <p className="text-sm md:text-base text-center w-full md:w-4/5 py-5 lg:pb-10">
                 Click from the services below to read more about them
             </p>
-            <AccordionPage panelTitles={panelTitles} panels={panels} heights={heights}/>
+            <AccordionPage panels={panels} heights={heights} openDefault={false} panelPoints={titlePoints} titles={titles}/>
         </div>
     );
 }

@@ -28,7 +28,7 @@ export default function SocialButton({networkName, parent}: {networkName: string
         },
       };
 
-    const networkLink = networkName === 'github' ? 'http://www.github.com/cdseaholm' : 'https://www.linkedin.com/in/carlseaholm/';
+    const networkLink = networkName === 'github' ? 'http://www.github.com/cdseaholm' : networkName === 'linkedin' ? 'https://www.linkedin.com/in/carlseaholm/' : 'https://www.instagram.com/newprogressco/';
 
 return (
     <div className='cursor-pointer' onClick={() => openInNewTab(networkLink)}>

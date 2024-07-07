@@ -10,6 +10,8 @@ interface StateStore {
     setAccordianSignal: (signal: string) => void;
     panelHeights: number[];
     setPanelHeights: (heights: number[]) => void;
+    devCurrentSelection: number;
+    setDevCurrentSelection: (index: number) => void;
 }
 
 export const useStateStore = create<StateStore>((set) => ({
@@ -24,5 +26,7 @@ export const useStateStore = create<StateStore>((set) => ({
     accordianSignal: '1',
     setAccordianSignal: (signal) => set({accordianSignal: signal}),
     panelHeights: [],
-    setPanelHeights: (heights) => set({panelHeights: heights})
+    setPanelHeights: (heights) => set({panelHeights: heights}),
+    devCurrentSelection: 0,
+    setDevCurrentSelection: (index) => set({devCurrentSelection: index})
 }));

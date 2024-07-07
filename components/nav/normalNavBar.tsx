@@ -6,12 +6,9 @@ import { usePathname } from 'next/navigation';
 import { useStateStore } from '@/context/stateStore';
 import { FiBookOpen, FiClipboard, FiDollarSign, FiFile, FiMail, FiMic } from 'react-icons/fi';
 import Image from "next/legacy/image";
-import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, tabs } from '@nextui-org/react';
 import DropDownNav from '../pagecomponents/services/pageNav/dropDownNav';
-import StaticNav from '../pagecomponents/services/pageNav/staticNav';
-import { set } from 'mongoose';
 
-const SidenavMobile = () => {
+export default function NormalNavBar() {
 
   const pathname = usePathname();
   const isBreakpoint = useStateStore((state) => state.widthQuery) <= 768 ? true : false;
@@ -40,35 +37,33 @@ const SidenavMobile = () => {
     (
       null
     ) : (
-      <div className={`fixed z-20 bg-blend-overlay top-2 w-full shadow-xl rounded-lg bg-slate-200 py-2`} style={{width: '96%', maxHeight: '1000px'}}>
-        <div className={`flex flex-row justify-between items-center w-full px-4`}>
-        <div className={`flex flex-col justify-start items-start w-full`}>
-                  <div className='flex flex-row items-center justify-start w-full'>
+      <div className={`fixed z-20 bg-blend-overlay top-2 w-full shadow-xl rounded-lg bg-slate-200 py-1`} style={{width: '90%', maxHeight: '1000px'}}>
+        <div className='flex flex-row justify-between items-center w-full px-6'>
+          <div className={`flex flex-col justify-evenly items-start w-full px-6`}>
+                  <div className='flex flex-row items-center justify-center space-x-2'>
                       <Link href='/'>
                         <div className='hover:bg-themeAcqua bg-transparent rounded-full shadow-xl cursor-pointer' style={{ width: `${imSize - 20}px`, height: `${imSize - 20}px`}}>
                           <Image src='/images/logoBG.png' alt='New Progress Co Logo' className='rounded-full' priority sizes='auto' width={imSize} height={imSize} />
                         </div>
                       </Link>
                       <div className='mx-2'>|</div>
-                      <Link className={` hover:text-themeStone/80 rounded-lg p-1 font-semibold text-xs ${pathname === '/npapps' ? 'underline font-bold text-themeStone hover:cursor-default hover:text-themeStone/80' : 'hover:bg-themeAcqua hover:text-black/70'}`} href={`/npapps`}>
+                      <Link className={` hover:text-themeStone/80 rounded-lg p-1 font-semibold ${pathname === '/npapps' ? 'underline font-bold text-themeStone hover:cursor-default hover:text-themeStone/80 md:text-xs' : 'hover:bg-themeAcqua hover:text-black/70 md:text-xs'}`} href={`/npapps`}>
                           <p>NP Apps</p>
                       </Link>
                       <div className='mx-2'>|</div>
-                      <Link className={` hover:text-themeStone/80 rounded-lg p-1 font-semibold text-xs ${pathname === '/webdevelopment' ? 'underline text-themeStone hover:cursor-default hover:text-themeStone/80' : 'hover:bg-themeAcqua hover:text-black/70'}`} href={`/webdevelopment`}>
+                      <Link className={` hover:text-themeStone/80 rounded-lg p-1 font-semibold ${pathname === '/webdevelopment' ? 'underline font-bold text-themeStone hover:cursor-default hover:text-themeStone/80 md:text-xs' : 'hover:bg-themeAcqua hover:text-black/70 md:text-xs hover:md:text-sm'}`} href={`/webdevelopment`}>
                           <p>Web Development</p>
                       </Link>
                   </div>
               </div>
-          {pathname === '/webdevelopment' && (
-            <DropDownNav open={open} setOpen={setOpen} tabs={tabs} parent={"webDevelopment"} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons} />
-          )}
-          {pathname === '/npapps' && (
-            <DropDownNav open={open} setOpen={setOpen} tabs={tabs} parent={"npApps"} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons} />
-          )}
+            {pathname === '/webdevelopment' && (
+              <DropDownNav open={open} setOpen={setOpen} tabs={tabs} parent={"webDevelopment"} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons} />
+            )}
+            {pathname === '/npapps' && (
+              <DropDownNav open={open} setOpen={setOpen} tabs={tabs} parent={"npApps"} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons} />
+            )}
         </div>
       </div>
     )
   );
 };
-
-export default SidenavMobile;

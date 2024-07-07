@@ -1,5 +1,12 @@
 import { create } from 'zustand';
 
+type infoType = {
+    title: string;
+    price: string;
+    explanation: string;
+    details: string[];
+}
+
 interface ModalStore {
     setSignUpModal: (signUpModal: boolean) => void;
     signUpModal: boolean;
@@ -13,6 +20,10 @@ interface ModalStore {
     setAlertConfirm: (alertConfirm: boolean) => void;
     modalOpen: string;
     setModalOpen: (modalOpen: string) => void;
+    setInfoModal: (infoModal: boolean) => void;
+    infoModal: boolean;
+    info: infoType;
+    setInfo: (info: infoType) => void;
 }
 
 export const useModalStore = create<ModalStore>((set) => ({
@@ -27,5 +38,14 @@ export const useModalStore = create<ModalStore>((set) => ({
     alertConfirm: false,
     setAlertConfirm: (alertConfirm) => set({alertConfirm}),
     modalOpen: '',
-    setModalOpen: (modalOpen) => set({modalOpen})
+    setModalOpen: (modalOpen) => set({modalOpen}),
+    setInfoModal: (infoModal) => set({infoModal}),
+    infoModal: false,
+    info: {
+        title: '',
+        price: '',
+        explanation: '',
+        details: []
+    },
+    setInfo: (info) => set({info})
 }));

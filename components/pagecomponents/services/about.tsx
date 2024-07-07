@@ -21,7 +21,7 @@ const PanelOne = ({panelKey}: {panelKey: number}) => {
 const PanelTwo = ({blurb, panelKey}: {blurb: string, panelKey: number}) => {
     
     return (
-        <div className="flex flex-col justify-start items-center w-full py-10" key={panelKey}>
+        <div className="flex flex-col justify-start items-center w-full py-3" key={panelKey}>
             <p>{blurb}</p>
         </div>
     )
@@ -29,9 +29,11 @@ const PanelTwo = ({blurb, panelKey}: {blurb: string, panelKey: number}) => {
 
 export default function AboutComponent() {
 
-    const isBreakpoint = useStateStore((state) => state.widthQuery) <= 768 ? true : false;
-
-    const panelTitles = [['Carl Seaholm'], ['New Progress'], ['What we can do for you']];
+    const panelTitles = [
+        'About New Progress',
+        'About Carl Seaholm',
+        'About what I can do for you'
+    ];
 
     const blurbs = [
         `New Progress itself was born from a Blog that began in 2016. New Progress became a way for founder Carl Seaholm to help others as much as he helps himself. New Progress may be a young company, but it's founder has been working with sites and blogs for years. New Progress' future has many avenues, including Applications to help encourage those who love many hobbies, applications free of Advertisements and clutter. He's been building sites for friends and family for years, and now he's ready to help you. He's been working with WordPress, Bluehost, and basic HTML for years. Not to mention JavaScript, TypeScript, countless CSS and Databases, as well as popular hosting platforms. He's ready to help you.`,
@@ -39,15 +41,19 @@ export default function AboutComponent() {
     ];
 
     const panels = [
-        <PanelOne key={0} panelKey={0} />,
-        <PanelTwo key={1} blurb={blurbs[0]} panelKey={1} />,
+        <PanelTwo key={0} blurb={blurbs[0]} panelKey={1} />,
+        <PanelOne key={1} panelKey={0} />,
         <PanelTwo key={2} blurb={blurbs[1]} panelKey={2} />
     ];
 
 
     return (
-        <div className="flex flex-col justify-start items-center border border-themeStone md:border-0 rounded-md p-2 py-10 h-full text-center scrollbar-thin scrollbar-webkit" style={{overflow: 'auto', width: isBreakpoint ? '98%' : '90%'}}>
-            <AccordionPage panelTitles={panelTitles} panels={panels} heights={[690, 340, 340]}/>
+        <div className="flex flex-col justify-start items-center rounded-md h-full p-2 pb-10 text-center scrollbar-thin scrollbar-webkit w-full" style={{overflow: 'auto'}}>
+            <div className="flex flex-col justify-start items-center w-4/5 my-12 md:my-16 lg:my-0"/>
+            <h2 className="font-semibold underline text-xl md:text-2xl pb-10">
+                Learn More
+            </h2>
+            <AccordionPage panels={panels} heights={[425, 800, 310]} openDefault={true} panelPoints={[]} titles={panelTitles}/>
         </div>
     );
 }

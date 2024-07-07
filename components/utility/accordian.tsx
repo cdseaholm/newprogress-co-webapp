@@ -3,33 +3,22 @@
 import { useStateStore } from '@/context/stateStore';
 import React from 'react';
 
-export const AccordionPage = ({panels, panelTitles, heights}: {panels: JSX.Element[], panelTitles: string[][], heights: number[]}) => {
+export const AccordionPage = ({panels, heights, openDefault, panelPoints, titles}: {panels: JSX.Element[], heights: number[], openDefault: boolean, panelPoints: string[][], titles: string[]}) => {
 
     const isBreakpoint = useStateStore((state) => state.widthQuery) <= 768 ? true : false;
+    const isLargeBreakpoint = useStateStore((state) => state.widthQuery) <= 1024 ? true : false;
 
-    const defaultPanel = panelTitles[0].length === 1 ? 'panel-1' : '';
+    const defaultPanel = openDefault ? 'panel-1' : '';
 
     return (
         <Accordion defaultPanel={defaultPanel}>
             {panels.map((panel, index) => {
-                
                 const height = index === 0 ? heights[index] : index === 1 ? heights[index] : index === 2 ? heights[index] : index === 3 ? heights[index] : heights[0];
 
                 return (
-                <div className='flex-col flex' key={index} id={`panel-${index + 1}`} style={{maxHeight: '10000px', width: isBreakpoint ? '98%' : '90%'}}>
-                    <AccordionItem toggle={`panel-${index + 1}`} className={`bg-themeWater/70 rounded-md text-black ${panelTitles[index].length === 1 ? '' : 'flex flex-row justify-between w-full space-x-5'} font-semibold`}>
-                        {panelTitles[index].length === 1 ? (
-                            `${panelTitles[index][0]}`
-                        ) : (
-                            <div className='flex flex-row w-full justify-between items-center'>
-                                <p>
-                                    {panelTitles[index][0]}
-                                </p>
-                                <p>
-                                    {panelTitles[index][1]}
-                                </p>
-                            </div>
-                        )}
+                <div className='flex-col flex lg:py-3' key={index} id={`panel-${index + 1}`} style={{maxHeight: '10000px', width: isBreakpoint ? '98%' : isLargeBreakpoint ? '90%' : '85%'}}>
+                    <AccordionItem toggle={`panel-${index + 1}`} className={`rounded-md w-full`} panelPoints={panelPoints[index]}>
+                        {titles[index]}
                     </AccordionItem>
                     <AccordionPanel id={`panel-${index + 1}`} height={height}>
                         {panel}
@@ -66,23 +55,46 @@ function Accordion({ children, defaultPanel }: { children: React.ReactNode; defa
 const useAccordion = () => React.useContext(Context);
 
 const style = {
-    item: `block focus:outline-none border-b my-1 p-3 w-full`,
-    panel: `overflow-hidden md:overflow-x-hidden transition-height ease duration-300 text-gray-600 h-full`,
+    item: `block focus:outline-none border-b px-1 w-full`,
+    panel: `overflow-hidden md:overflow-x-hidden transition-height ease duration-300 text-gray-600 h-full mb-4 px-1`,
 };
 
-function AccordionItem({ toggle, children, className }: { toggle: string; children: React.ReactNode; className: string }) {
+function AccordionItem({ toggle, children, className, panelPoints }: { toggle: string; children: React.ReactNode; className: string, panelPoints?: string[]}) {
     const { selected, toggleItem } = useAccordion();
     return (
-        <div
-        role="button"
-        onClick={toggleItem(toggle)}
-        className={`${style.item} ${className}`}
-        >
-        {children}
-        <span className="float-right">
-            {selected === toggle ? <AngleUpIcon /> : <AngleDownIcon />}
-        </span>
-        </div>
+        panelPoints && panelPoints?.length > 1 ?  
+            (
+                <div
+                role="button"
+                onClick={toggleItem(toggle)}
+                className={`${style.item} ${className}`}
+                >
+                    <div className={`flex flex-row justify-between items-start bg-themeWater/70 w-full text-black font-semibold p-2 rounded-t-md border-t border-x border-themeStone transition-all duration-100`}>
+                        {children}
+                        <span className="float-right">
+                            {selected === toggle ? <AngleUpIcon /> : <AngleDownIcon />}
+                        </span>
+                    </div>
+                    <ul className={`list-disc grid grid-cols-2 grid-rows-2 bg-themeWhite w-full p-2 border-x border-themeStone transition-all duration-100 gap-1 lg:gap-2 ${selected === toggle ? '' : 'rounded-b-md border-b delay-200'}`} style={{listStylePosition: 'inside'}}>
+                        {panelPoints.map((point, index) => (
+                            <li className="text-xs font-normal flex-wrap mx-2 lg:text-sm lg:mx-4" key={index}>
+                                {point}
+                            </li>
+                        ))}
+                    </ul> 
+                </div>
+            ) : (
+                <div
+                    role="button"
+                    onClick={toggleItem(toggle)}
+                    className={`${style.item} ${className} flex flex-row justify-between items-start bg-themeWater/70 w-full text-black font-semibold p-2 rounded-t-md border-t border-x border-themeStone transition-all duration-100`}
+                    >
+                    {children}
+                    <span className="float-right">
+                    {selected === toggle ? <AngleUpIcon /> : <AngleDownIcon />}
+                    </span>
+                </div>
+        )
     );
 }
 
