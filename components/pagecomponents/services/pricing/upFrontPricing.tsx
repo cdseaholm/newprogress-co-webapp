@@ -1,30 +1,9 @@
-import { AccordionPage } from "@/components/utility/accordian";
-import { useStateStore } from "@/context/stateStore";
+'use client'
+
+import { useModalStore } from "@/context/modalStore";
 import React, { use } from "react";
+import { FiMoreHorizontal } from "react-icons/fi";
 
-type product = {
-    name: string,
-    cost: string,
-    explanation: string,
-    details: string[]
-}
-
-const panel = ({product}: {product: product}) => {
-    return (
-        <div className="flex flex-col justify-start items-center rounded-md w-full space-y-2">
-            <p className="text-base md:text-lg underline text-semibold">Details</p>
-            <ul className={`list-disc text-sm md:text-base grid grid-cols-1 grid-rows-${product.details.length} items-center gap-1 text-start`} style={{width: '90%'}}>
-                {product.details.map((detail, index) => (
-                    <li key={index}>
-                        {detail}
-                    </li>
-                ))}
-            </ul>
-            <p className="text-base md:text-lg underline text-semibold">{`Explanation`}</p>
-            <p className="text-sm md:text-base">{product.explanation}</p>
-        </div>
-    )
-}
 
 export default function UpFrontPricing() {
 
@@ -55,11 +34,14 @@ export default function UpFrontPricing() {
             ]
         },
         {
-            name: 'Website Maintenance/Edits and Bug fixes',
-            cost: '$50/hr with 1 hour minimum',
+            name: 'Site Maintenance',
+            cost: '$50/hr',
             explanation: `I charge $50/hr for any edits or bug fixes that you may need. I have a 1 hour minimum, but if it's a quick fix I will be able to tell you how long it will take me to fix the issue. If it's a bug in my code, I will fix it for free. I am a perfectionist though and I don't forsee that being an issue.`,
             details: [
-                `1 hour minimum`
+                `*1 hour minimum*`,
+                `Includes bug fixes`,
+                `Includes updates`,
+                `Includes edits (if you need something changed or have a new idea)`
             ]
         },
         {
@@ -82,25 +64,51 @@ export default function UpFrontPricing() {
         }
     ];
 
-    const titles = [
-        ['Full Website Creation', '$3,500'],
-        ['Logo Creation', '$100'],
-        ['Site Maintenance', '$50/hr'],
-        ['Site Hosting', '$30/month']
-    ];
-
-    const heights = [500, 380, 230, 560];
-    const isBreakpoint = useStateStore((state) => state.widthQuery) <= 768 ? true : false;
+    const setInfoModal = useModalStore((state) => state.setInfoModal);
+    const setInfo = useModalStore((state) => state.setInfo);
     
     return (
-        <div className="flex flex-col justify-start items-center rounded-md w-full h-full space-y-2">
-            <p className="text-sm md:text-base text-start" style={{width: isBreakpoint ? '98%' : '90%'}}>
-                {`Up Front Pricing is typically for companies and individuals who are either looking for something quick, know what they want, or have a set budget. A 5 page static site can take anyway from 20-40 hours of work depending on what you're looking for. Each one of my prices are subject to change and based on the scope of the project. I will be able to tell you up front what length the project will require (pending add ons).`}
-            </p>
-            <h2 className="font-semibold underline text-base md:text-lg py-5">
-                {`What you get and the cost:`}
-            </h2>
-            <AccordionPage panels={products.map((product: product) => panel({product}))} panelTitles={titles} heights={heights} />
+        <div className="relative overflow-x-hidden w-full md:w-4/5 h-full">
+            <table className="w-full h-4/5 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 shadow-md sm:rounded-lg">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" className="px-6 py-3">
+                            Service
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                            Price
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                            More
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {products.map((product, index) => (
+                        <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {product.name}
+                            </th>
+                            <td className="px-6 py-4">
+                                {product.cost}
+                            </td>
+                            <td className="px-6 py-4 text-right" onClick={() => {
+                                setInfo({
+                                    title: product.name,
+                                    price: product.cost,
+                                    explanation: product.explanation,
+                                    details: product.details
+                                });
+                                setInfoModal(true);
+                            }}>
+                                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                    <FiMoreHorizontal />
+                                </a>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     )
 }

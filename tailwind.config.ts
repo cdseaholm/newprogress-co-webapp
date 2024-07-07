@@ -8,7 +8,8 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
     "./public/**/*.html",
-    "./node_modules/@tremor/**/*.{js,ts,jsx,tsx}"
+    "./node_modules/@tremor/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/flowbite/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
     extend: {
@@ -28,6 +29,7 @@ const config: Config = {
   },
   darkMode: "class",
   plugins: [
+    require('flowbite/plugin'),
     nextui(),
     function ({addUtilities}: {addUtilities: any}) {
       const newUtilities = {
