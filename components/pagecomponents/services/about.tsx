@@ -10,7 +10,6 @@ const PanelOne = ({panelKey}: {panelKey: number}) => {
 
     return (
         <div className="flex flex-col justify-start items-center w-full space-y-5 py-5" key={panelKey}>
-            <ImageFormat image={'/images/carlseaholmprofile.jpg'} imSize={isBreakpoint ? 100 : 150} index={0} />
             <p>
                 {`Carl Seaholm is a tech enthusiast and self taught Web Developer. He has been working with Blogs and sites since about 2016. Up until recently, Carl used his skills to work on side projects, and improving sites during his day job. His side projects began as a self-improvement blog in 2016 using WordPress, Bluehost, and basic HTML. He took his love for self-improvement and began teaching himself to code a few years later. After which, he realized how much he actually loved seeing a site come into fruition. Now he spends his time making others' dreams a reality by taking care of their online precense for them. He spends his downtime playing piano and guitar, reading, writing (attempting to get his first book published while working on his second), teaching himself electronics and languages, and staying fit with the weightlifting and Brazilian Jiu Jitsu (a purple belt). He has a wonderful girlfriend and two crazy bengal cats. If for whatever reason you'd like to keep track of Carl and all of his progress, feel free to go to `} <a className="text-themeWater hover:underline hover:text-themeAcqua" href="https://www.carlseaholm.com">carlseaholm.com</a> {`, where in his sparetime he tracks his hobbies and continously updates his personal site. He would love nothing more than to see if he can help you.`}
             </p>
@@ -29,6 +28,9 @@ const PanelTwo = ({blurb, panelKey}: {blurb: string, panelKey: number}) => {
 
 export default function AboutComponent() {
 
+    const isBreakpoint = useStateStore((state) => state.widthQuery) <= 768 ? true : false;
+    const isLargeBreakpoint = useStateStore((state) => state.widthQuery) >= 1024 ? true : false;
+
     const panelTitles = [
         'About New Progress',
         'About Carl Seaholm',
@@ -46,14 +48,22 @@ export default function AboutComponent() {
         <PanelTwo key={2} blurb={blurbs[1]} panelKey={2} />
     ];
 
+    const panelPoints = [
+        ['/images/logoBG.png'],
+        ["/images/carlseaholmprofile.jpg"],
+        ['/images/whatcanidoforyou.jpg']
+    ];
+
+    const heights = isBreakpoint ? [210, 400, 150] : isLargeBreakpoint ? [200, 300, 140] : [250, 400, 160];
+
 
     return (
-        <div className="flex flex-col justify-start items-center rounded-md h-full p-2 pb-10 text-center scrollbar-thin scrollbar-webkit w-full" style={{overflow: 'auto'}}>
+        <div className="flex flex-col justify-start items-center rounded-md h-full text-center scrollbar-thin scrollbar-webkit w-full" style={{overflow: 'auto'}}>
             <div className="flex flex-col justify-start items-center w-4/5 my-12 md:my-16 lg:my-0"/>
             <h2 className="font-semibold underline text-xl md:text-2xl pb-10">
                 Learn More
             </h2>
-            <AccordionPage panels={panels} heights={[425, 800, 310]} openDefault={true} panelPoints={[]} titles={panelTitles}/>
+            <AccordionPage panels={panels} heights={heights} openDefault={true} panelPoints={panelPoints} titles={panelTitles} parent={'about'}/>
         </div>
     );
 }

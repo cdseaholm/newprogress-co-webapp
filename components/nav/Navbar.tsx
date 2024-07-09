@@ -40,31 +40,33 @@ const SidenavMobile = () => {
     (
       null
     ) : (
-      <div className={`fixed z-20 bg-blend-overlay top-2 w-full shadow-xl rounded-lg bg-slate-200 py-2`} style={{width: '96%', maxHeight: '1000px'}}>
+      <div className={`fixed z-20 bg-blend-overlay top-2 shadow-xl rounded-lg bg-slate-200 py-2`} style={{width: '95%', maxHeight: '1000px'}}>
         <div className={`flex flex-row justify-between items-center w-full px-4`}>
         <div className={`flex flex-col justify-start items-start w-full`}>
-                  <div className='flex flex-row items-center justify-start w-full'>
-                      <Link href='/'>
-                        <div className='hover:bg-themeAcqua bg-transparent rounded-full shadow-xl cursor-pointer' style={{ width: `${imSize - 20}px`, height: `${imSize - 20}px`}}>
-                          <Image src='/images/logoBG.png' alt='New Progress Co Logo' className='rounded-full' priority sizes='auto' width={imSize} height={imSize} />
-                        </div>
-                      </Link>
-                      <div className='mx-2'>|</div>
-                      <Link className={` hover:text-themeStone/80 rounded-lg p-1 font-semibold text-xs ${pathname === '/npapps' ? 'underline font-bold text-themeStone hover:cursor-default hover:text-themeStone/80' : 'hover:bg-themeAcqua hover:text-black/70'}`} href={`/npapps`}>
-                          <p>NP Apps</p>
-                      </Link>
-                      <div className='mx-2'>|</div>
-                      <Link className={` hover:text-themeStone/80 rounded-lg p-1 font-semibold text-xs ${pathname === '/webdevelopment' ? 'underline text-themeStone hover:cursor-default hover:text-themeStone/80' : 'hover:bg-themeAcqua hover:text-black/70'}`} href={`/webdevelopment`}>
-                          <p>Web Development</p>
-                      </Link>
-                  </div>
+          <div className='flex flex-row items-center justify-start w-full'>
+            <Link href='/'>
+              <div className='hover:bg-themeAcqua bg-transparent rounded-full shadow-xl cursor-pointer' style={{ width: `${imSize - 20}px`, height: `${imSize - 20}px`}}>
+                <Image src='/images/logoBG.png' alt='New Progress Co Logo' className='rounded-full' priority sizes='auto' width={imSize} height={imSize} />
               </div>
-          {pathname === '/webdevelopment' && (
-            <DropDownNav open={open} setOpen={setOpen} tabs={tabs} parent={"webDevelopment"} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons} />
-          )}
-          {pathname === '/npapps' && (
-            <DropDownNav open={open} setOpen={setOpen} tabs={tabs} parent={"npApps"} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons} />
-          )}
+            </Link>
+            <Link className={`hover:text-themeStone/80 rounded-lg p-1 ml-1 font-semibold text-xs ${pathname === '/npapps' ? 'underline font-bold text-themeStone hover:cursor-default hover:text-themeStone/80' : 'hover:bg-themeAcqua hover:text-black/70'}`} href={`/npapps`}>
+              <p>NP Apps</p>
+            </Link>
+            <div className='mx-1'>|</div>
+            <Link className={` hover:text-themeStone/80 rounded-lg p-1 font-semibold text-xs ${pathname === '/webdevelopment' ? 'underline text-themeStone hover:cursor-default hover:text-themeStone/80' : 'hover:bg-themeAcqua hover:text-black/70'}`} href={`/webdevelopment`}>
+              <p>Web Development</p>
+            </Link>
+          </div>
+        </div>
+        <div className='flex flex-row items-center justify-center space-x-2'>
+          <p className='font-semibold text-xs text-themeStone/80'>{tabs[currentSelection]}</p>
+            {pathname === '/webdevelopment' && (
+              <DropDownNav open={open} setOpen={setOpen} tabs={tabs} parent={"webDevelopment"} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons} />
+            )}
+            {pathname === '/npapps' && (
+              <DropDownNav open={open} setOpen={setOpen} tabs={tabs} parent={"npApps"} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons} />
+            )}
+          </div>
         </div>
       </div>
     )

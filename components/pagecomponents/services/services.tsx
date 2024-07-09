@@ -22,7 +22,7 @@ const PanelOne = ({panelKey}: {panelKey: number}) => {
     ];
 
     return (
-        <div className="flex flex-col justify-center items-center rounded-b-md w-full h-full text-center bg-gradient-to-r from-themeAcqua/40 from-1% via-themeAcqua/40 via-50% to-themeWhite/80 to-100% shadow-lg text-black" key={panelKey}>
+        <div className="flex flex-col justify-center items-center rounded-b-md w-full h-full text-center bg-gradient-to-r from-themeAcqua/40 from-1% to-themeWhite/80 to-100% shadow-lg text-black backdrop-blur-sm" key={panelKey}>
             <div className="flex flex-col justify-center items-center w-full h-full bg-gradient-to-t from-inherit to-inherit/80 rounded-b-md p-4">
                 <h3 className="text-sm md:text-base font-semibold">
                     {`Beginning with my own personal template and consolidated favorite libraries, I can give you a basic site with:`
@@ -69,7 +69,7 @@ const PanelTwo = ({handleClickedTab, panelKey}: {handleClickedTab: (index: numbe
     ];
 
     return (
-        <div className="flex flex-col justify-center items-center rounded-b-md w-full h-full text-center bg-gradient-to-r from-themeWhite/80 from-1% via-themeAcqua/40 via-50% to-themeAcqua/40 to-100%" key={panelKey}>
+        <div className="flex flex-col justify-center items-center rounded-b-md w-full h-full text-center bg-gradient-to-r from-themeAcqua/40 from-1% to-themeWhite/80 to-100% shadow-lg text-black backdrop-blur-sm" key={panelKey}>
             <div className="flex flex-col justify-center items-center w-full h-full bg-gradient-to-t from-inherit to-inherit/80 rounded-b-md p-4">
                 <p>
                     {`Included:`}
@@ -94,7 +94,7 @@ const PanelThree = ({panelKey}: {panelKey: number}) => {
     const accordianSignal = useStateStore((state) => state.accordianSignal);
 
     return (
-        <div className="flex flex-col justify-center items-center rounded-b-md w-full h-full text-center bg-gradient-to-r from-themeAcqua/40 from-1% via-themeAcqua/40 via-50% to-themeWhite/80 to-100% shadow-lg text-black" key={panelKey}>
+        <div className="flex flex-col justify-center items-center rounded-b-md w-full h-full text-center bg-gradient-to-r from-themeAcqua/40 from-1% to-themeWhite/80 to-100% shadow-lg text-black backdrop-blur-sm" key={panelKey}>
             <div className="flex flex-col justify-center items-center w-full h-full bg-gradient-to-t from-inherit to-inherit/80 rounded-b-md p-4">
                 <EmblaCarousel accordianSignal={accordianSignal} />
             </div>
@@ -105,7 +105,7 @@ const PanelThree = ({panelKey}: {panelKey: number}) => {
 const PanelFour = ({handleClickedTab, panelKey}: {handleClickedTab: (index: number) => void, panelKey: number}) => {
 
     return (
-        <div className="flex flex-col justify-center items-center rounded-b-md w-full h-full text-center bg-gradient-to-r from-themeWhite/80 from-1% via-themeAcqua/40 via-50% to-themeAcqua/40 to-100% text-black" key={panelKey}>
+        <div className="flex flex-col justify-center items-center rounded-b-md w-full h-full text-center bg-gradient-to-r from-themeAcqua/40 from-1% to-themeWhite/80 to-100% shadow-lg text-black backdrop-blur-sm" key={panelKey}>
             <div className="flex flex-col justify-center items-center w-full h-full bg-gradient-to-t from-inherit to-inherit/80 rounded-b-md p-4">
                 <p>
                     {`Site Hosting is a crucial part of getting your site up and running. It's the final step in the process of getting your site live. If you'd like for me to handle it all, I can do that. If you'd like to handle it yourself, I can walk you through the process. `} 
@@ -130,24 +130,6 @@ const PanelFour = ({handleClickedTab, panelKey}: {handleClickedTab: (index: numb
     );
 }
 
-const PanelTitle = ({panelPoints, title}: {panelPoints: string[], title: string}) => {
-    return (
-        <div className="flex flex-col justify-start items-center w-4/5">
-            <h2 className="font-semibold underline text-xl md:text-2xl">
-                {title}
-            </h2>
-            <ul className="list-disc grid grid-cols-2 grid-rows-2 bg-themeWhite w-full" style={{listStylePosition: 'inside'}}
-            >
-                {panelPoints.map((point, index) => (
-                    <li className="text-sm md:text-base font-normal flex-wrap mx-2 my-1" key={index}>
-                        {point}
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
-};
-
 
 export default function ServicesComponent({handleClickedTab}: {handleClickedTab: (index: number) => void}) {
 
@@ -167,13 +149,6 @@ export default function ServicesComponent({handleClickedTab}: {handleClickedTab:
         [`Good for Long term relationships`, `No hassle on client end`, `Affordable Prices`, `Strong site upkeep`]
     ];
 
-    const panelTitles = [
-        <PanelTitle panelPoints={titlePoints[0]} title={titles[0]} key={0}/>,
-        <PanelTitle panelPoints={titlePoints[1]} title={titles[1]} key={1}/>,
-        <PanelTitle panelPoints={titlePoints[2]} title={titles[2]} key={2}/>,
-        <PanelTitle panelPoints={titlePoints[3]} title={titles[3]} key={3}/>
-    ];
-
     const panels = [
         <PanelOne key={0} panelKey={0} />,
         <PanelTwo key={1} handleClickedTab={handleClickedTab} panelKey={1} />,
@@ -184,15 +159,11 @@ export default function ServicesComponent({handleClickedTab}: {handleClickedTab:
     const heights = [350, 520, 300, 650];
 
     return (
-        <div className={`flex flex-col items-center justify-start scrollbar-thin scrollbar-webkit w-full h-full p-2 pb-10`} style={{overflowY: 'auto', overflowX: 'hidden', maxHeight: '10000px'}}>
-            <div className="flex flex-col justify-start items-center w-4/5 my-12 md:my-16 lg:my-0"/>
-            <h2 className="font-semibold underline text-xl md:text-2xl">
-                Services
-            </h2>
-            <p className="text-sm md:text-base text-center w-full md:w-4/5 py-5 lg:pb-10">
-                Click from the services below to read more about them
-            </p>
-            <AccordionPage panels={panels} heights={heights} openDefault={false} panelPoints={titlePoints} titles={titles}/>
+        <div className={`flex flex-col items-center justify-start scrollbar-thin scrollbar-webkit w-full h-full p-2 pr-1 ml-1`} style={{overflowY: 'auto', overflowX: 'hidden', maxHeight: '10000px'}}>
+            <div className="flex flex-col justify-start items-center h-full" style={{width: '90%'}}>
+                <div className="flex flex-row justify-center items-start my-12 md:my-16 lg:my-0"/>
+                <AccordionPage panels={panels} heights={heights} openDefault={false} panelPoints={titlePoints} titles={titles} parent={'services'}/>
+            </div>
         </div>
     );
 }

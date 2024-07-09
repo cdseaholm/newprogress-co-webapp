@@ -31,7 +31,7 @@ export default function ServicesPage() {
     return (
         <MainChild>
             <InPageHeaderWrap>
-                <div className="flex flex-col items-start justify-center w-full h-full overflow-hidden" style={{maxHeight: 10000}}>
+                <div className="flex flex-col items-center justify-start w-full h-full overflow-hidden" style={{maxHeight: 10000}}>
                         {currentSelection === 0 ?       
                             <ServicesComponent handleClickedTab={handleClickedTab} />
                         : currentSelection === 1 ?
