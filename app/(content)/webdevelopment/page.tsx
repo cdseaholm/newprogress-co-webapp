@@ -28,6 +28,14 @@ export default function ServicesPage() {
 
     const [priceUpFront, setPriceUpFront] = useState(true);
 
+    const handleUpFrontClick = () => {
+        setPriceUpFront(true);
+    };
+      
+    const handleMonthlyClick = () => {
+        setPriceUpFront(false);
+    };
+
     return (
         <MainChild>
             <InPageHeaderWrap>
@@ -35,7 +43,7 @@ export default function ServicesPage() {
                         {currentSelection === 0 ?       
                             <ServicesComponent handleClickedTab={handleClickedTab} />
                         : currentSelection === 1 ?
-                            <PricingComponent priceUpFront={priceUpFront} setPriceUpFront={setPriceUpFront} />
+                            <PricingComponent priceUpFront={priceUpFront} handleMonthlyClick={handleMonthlyClick} handleUpFrontClick={handleUpFrontClick} />
                         : currentSelection === 5 ?
                             <ContactComponent />
                         : currentSelection === 2 ?

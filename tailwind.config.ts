@@ -31,16 +31,20 @@ const config: Config = {
   plugins: [
     require('flowbite/plugin'),
     nextui(),
-    function ({addUtilities}: {addUtilities: any}) {
+    function ({addUtilities, theme}: {addUtilities: any, theme: any}) {
       const newUtilities = {
         ".scrollbar-thin": {
           scrollbarWidth: 'thin',
           scrollbarColor: "rgba(0, 0, 0, 0.5) transparent",
-          scrollbarGutter: 'stable'
+          scrollbarGutter: 'stable',
+          paddingRight: '0px',
         },
         ".scrollbar-webkit": {
+          position: 'absolute',
+          right: 0,
+          paddingRight: '0px',
           "&::-webkit-scrollbar": {
-            width: "8px",
+            width: "0px",
           },
           "&::-webkit-scrollbar-track": {
             background: "transparent",
@@ -49,6 +53,15 @@ const config: Config = {
             backgroundColor: "rgba(0, 0, 0, 0.5)",
             borderRadius: "20px",
             border: "1px solid transparent"
+          },
+        },
+        [`@media (max-device-width: ${theme('screens.sm')})`]: {
+          ".scrollbar-thin": {
+            paddingRight: '8px',
+            scrollbarGutter: 'stable'
+          },
+          ".scrollbar-webkit": {
+            paddingRight: '8px'
           },
         }
       }

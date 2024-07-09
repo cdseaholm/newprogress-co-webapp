@@ -15,7 +15,7 @@ const MotionWrap = ({children, motionKey}: {children: React.ReactNode; motionKey
             stiffness: 100,
             damping: 20,
             delay: 0.2,
-        }} className='w-full h-full overflow-hidden'>
+        }} className='w-screen h-full overflow-hidden'>
             {children}
         </motion.div>
     );

@@ -68,9 +68,9 @@ export default function UpFrontPricing() {
     const setInfo = useModalStore((state) => state.setInfo);
     
     return (
-        <div className="relative overflow-x-hidden w-full md:w-4/5 h-full">
-            <table className="w-full h-4/5 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 shadow-md sm:rounded-lg">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <div className={`relative overflow-x-hidden w-full md:w-4/5 h-full`}>
+            <table className="w-full h-4/5 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 shadow-md sm:rounded-lg bg-gradient-to-tr from-themeAcqua/50 to-themeWhite/80">
+                <thead className="text-xs text-gray-700 uppercase dark:text-gray-400">
                     <tr>
                         <th scope="col" className="px-6 py-3">
                             Service
@@ -85,7 +85,7 @@ export default function UpFrontPricing() {
                 </thead>
                 <tbody>
                     {products.map((product, index) => (
-                        <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <tr key={index} className="border-b border-themeStone/20 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {product.name}
                             </th>
