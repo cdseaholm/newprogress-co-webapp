@@ -54,15 +54,12 @@ export default function AboutComponent() {
         ['/images/whatcanidoforyou.jpg']
     ];
 
-    const heights = isBreakpoint ? [210, 400, 150] : isLargeBreakpoint ? [200, 300, 140] : [250, 400, 160];
+    const heights = isBreakpoint ? [400, 650, 300] : isLargeBreakpoint ? [200, 300, 140] : [250, 400, 160];
 
 
     return (
-        <div className="flex flex-col justify-start items-center rounded-md h-full text-center scrollbar-thin scrollbar-webkit w-full" style={{overflow: 'auto'}}>
-            <div className="flex flex-col justify-start items-center w-4/5 my-12 md:my-16 lg:my-0"/>
-            <h2 className="font-semibold underline text-xl md:text-2xl pb-10">
-                Learn More
-            </h2>
+        <div className="flex flex-col justify-start items-center rounded-md h-full text-center scrollbar-thin scrollbar-webkit w-full p-2 sm:pr-1 sm:ml-1" style={{overflow: 'auto'}}>
+            <div className="flex flex-row justify-center items-start my-12 md:my-16 lg:my-0"/>
             <AccordionPage panels={panels} heights={heights} openDefault={true} panelPoints={panelPoints} titles={panelTitles} parent={'about'}/>
         </div>
     );

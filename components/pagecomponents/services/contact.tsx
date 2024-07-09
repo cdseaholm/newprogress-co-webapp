@@ -12,8 +12,8 @@ export default function ContactComponent() {
 
     return (
         <div className="flex flex-col justify-start items-center rounded-md p-2 pb-10 h-full text-center w-full lg:space-y-20 md:space-y-16 space-y-12">
+            <div className="flex flex-row justify-center items-start my-12 md:my-16 lg:my-0"/>
             <div className="flex flex-col justify-start items-center">
-                <div className="flex flex-col justify-start items-center w-4/5 my-12 md:my-16 lg:my-0"/>
                 <h2 className="font-bold underline text-xl md:text-2xl">
                     {`To Contact:`}
                 </h2>
