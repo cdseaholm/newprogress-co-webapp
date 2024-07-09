@@ -13,13 +13,13 @@ export const AccordionPage = ({panels, heights, openDefault, panelPoints, titles
 
     return (
         <Accordion defaultPanel={defaultPanel}>
-            <div className={`flex flex-col justify-center items-center w-full space-y-2`}>
+            <div className={`flex flex-col justify-center items-center w-full space-y-2 mb-10`}>
             {panels.map((panel, index) => {
                 const height = index === 0 ? heights[index] : index === 1 ? heights[index] : index === 2 ? heights[index] : index === 3 ? heights[index] : heights[0];
                 const id = `panel-${index + 1}`;
 
                 return (
-                    <div className={`lg:py-3 md:w-4/5 lg:w-3/4 flex-col flex w-full`} key={index} id={id} style={{maxHeight: '10000px'}}>
+                    <div className={`lg:py-3 md:w-4/5 lg:w-3/4 flex-col flex w-full h-full`} key={index} id={id} style={{maxHeight: '10000px'}}>
                         <AccordionItem toggle={id} id={id} name={id} className={`w-full`} panelPoints={panelPoints[index]} panelPointsIndex={index} parent={parent}>
                             {titles[index]}
                         </AccordionItem>
@@ -60,7 +60,7 @@ const useAccordion = () => React.useContext(Context);
 
 const style = {
     item: `block focus:outline-none`,
-    panel: `overflow-hidden md:overflow-x-hidden transition-height ease duration-300 text-gray-600 h-full`,
+    panel: `overflow-hidden md:overflow-x-hidden transition-height ease duration-300 text-gray-600 h-full px-1`,
 };
 
 //${selected === toggle ? '' : 'rounded-b-md border-b delay-200'}

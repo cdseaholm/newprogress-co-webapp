@@ -159,11 +159,9 @@ export default function ServicesComponent({handleClickedTab}: {handleClickedTab:
     const heights = [350, 520, 300, 650];
 
     return (
-        <div className={`flex flex-col items-center justify-start scrollbar-thin scrollbar-webkit w-full h-full p-2 pr-1 ml-1`} style={{overflowY: 'auto', overflowX: 'hidden', maxHeight: '10000px'}}>
-            <div className="flex flex-col justify-start items-center h-full" style={{width: '90%'}}>
+        <div className={`flex flex-col items-center justify-start scrollbar-thin scrollbar-webkit w-full h-full p-2 sm:pr-1 sm:ml-1`} style={{overflowY: 'auto', overflowX: 'hidden', maxHeight: '10000px'}}>
                 <div className="flex flex-row justify-center items-start my-12 md:my-16 lg:my-0"/>
                 <AccordionPage panels={panels} heights={heights} openDefault={false} panelPoints={titlePoints} titles={titles} parent={'services'}/>
-            </div>
         </div>
     );
 }

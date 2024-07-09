@@ -48,12 +48,9 @@ export default function TestimonialComponent() {
     };
 
     return (
-        <div className="flex flex-col justify-start items-center rounded-md p-2 text-center scrollbar-thin scrollbar-webkit h-full w-full" style={{overflow: 'auto'}}>
-            <div className="flex flex-col justify-start items-center w-4/5 my-12 md:my-16 lg:my-0"/>
-            <h2 className="font-semibold underline text-xl md:text-2xl">
-                {`Client Testimonials`}
-            </h2>
-            <div className="flex flex-col justify-start items-center w-full h-full py-5 space-y-5">
+        <div className="flex flex-col justify-start items-center rounded-md p-2 text-center scrollbar-thin scrollbar-webkit h-full w-full p-2 sm:pr-1 sm:ml-1" style={{overflow: 'auto'}}>
+            <div className="flex flex-row justify-center items-start my-12 md:my-16 lg:my-0"/>
+            <div className="flex flex-col justify-start items-center w-full h-full py-5 mb-10 space-y-5">
                 <Testimonal {...mdcpa} />
                 <Testimonal {...banks} />
             </div>
