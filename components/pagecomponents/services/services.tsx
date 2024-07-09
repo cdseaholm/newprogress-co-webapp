@@ -155,13 +155,24 @@ export default function ServicesComponent({handleClickedTab}: {handleClickedTab:
         <PanelThree key={2} panelKey={2} />,
         <PanelFour key={3} handleClickedTab={handleClickedTab} panelKey={3} />
     ];
-    
-    const heights = [350, 520, 300, 650];
+
+    const heightQuery = useStateStore((state) => state.heightQuery);
+    const widthQuery = useStateStore((state) => state.widthQuery);
+    const aspectRatio = heightQuery / widthQuery;
+    const widthRatio = widthQuery * .90;
+
+    const heightOne = widthRatio * aspectRatio * .55;
+    const heightTwo = widthRatio * aspectRatio * .70;
+    const heightThree = widthRatio * aspectRatio * .50;
+    const heightFour = widthRatio * aspectRatio * .90;
+
+    const heights = [heightOne, heightTwo, heightThree, heightFour];
 
     return (
-        <div className={`flex flex-col items-center justify-start scrollbar-thin scrollbar-webkit w-full h-full p-2 sm:pr-1 sm:ml-1`} style={{overflowY: 'auto', overflowX: 'hidden', maxHeight: '10000px'}}>
-                <div className="flex flex-row justify-center items-start my-12 md:my-16 lg:my-0"/>
+        <div className={`flex flex-col items-center justify-start scrollbar-thin scrollbar-webkit w-full h-full p-2 overflow-y-hidden overflow-x-hidden hover:overflow-y-auto`} style={{maxHeight: '10000px'}}>
+                <div className="w-full" style={{minHeight: '12%'}}/>
                 <AccordionPage panels={panels} heights={heights} openDefault={false} panelPoints={titlePoints} titles={titles} parent={'services'}/>
+                <div className="w-full" style={{minHeight: '12%'}}/>
         </div>
     );
 }

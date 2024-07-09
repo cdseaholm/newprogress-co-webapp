@@ -3,6 +3,7 @@
 import { useStateStore } from '@/context/stateStore';
 import Image from 'next/image';
 import React from 'react';
+import ImageFormat from './imageFormat';
 
 export const AccordionPage = ({panels, heights, openDefault, panelPoints, titles, parent}: {panels: JSX.Element[], heights: number[], openDefault: boolean, panelPoints: string[][], titles: string[], parent: string}) => {
 
@@ -71,7 +72,7 @@ function AccordionItem({ toggle, children, className, panelPoints, panelPointsIn
     const imSize = isBreakpoint ? 100 : 150;
     const imageToUse = panelPointsIndex === 0 ? '/images/logoBG.png' : panelPointsIndex === 1 ? '/images/carlseaholmprofile.jpg' : '/images/whatcanidoforyou.jpg';
     return (
-        panelPoints && panelPoints.length > 1  ?  
+        parent !== ''  ?  
             (
                 <div
                 role="button"
@@ -95,9 +96,7 @@ function AccordionItem({ toggle, children, className, panelPoints, panelPointsIn
                                     </ul>
                                 </div>
                             ) : (
-                                <div style={{ position: 'relative', width: `${imSize}px`, height: `${imSize}px`}}>
-                                    <Image src={imageToUse} alt={'carl seaholm'} layout='fill' objectFit='cover' className='rounded-full' priority sizes='auto' />
-                                </div>
+                                <ImageFormat image={imageToUse} imSize={imSize} index={panelPointsIndex ? panelPointsIndex : 0} />
                             )}
                         </div>
                     </div>
