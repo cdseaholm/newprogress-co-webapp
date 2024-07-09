@@ -63,13 +63,13 @@ export function EmblaCarousel({accordianSignal}: {accordianSignal: string}) {
     return (
         <div className={`flex flex-col items-center justify-evenly h-full w-full ${accordianSignal === '3' ? 'border border-themeStone' : ''} rounded-md py-2 space-y-2`}>
             <div className='flex flex-row items-center justify-end w-full'>
-                <select className="bg-transparent hover:bg-themeAcqua hover:underline text-xs md:text-sm rounded-md border border-themeStone" defaultValue={'4'} onChange={(e) => {
+                <select className="bg-transparent hover:bg-themeAcqua hover:underline text-xs md:text-sm rounded-md border border-themeStone" name='logoexampleselect' id='logoexampleselect' defaultValue={'4'} onChange={(e) => {
                     setSelectedIndex(Number((e.target as HTMLSelectElement).value));
                 }}>
-                    <option value="3">All Logo Examples</option>
-                    <option value="0">New Progress</option>
-                    <option value="1">MD CPA - Client</option>
-                    <option value="2">Banks Apparel Co - Client</option>
+                    <option value="3" id='logoexample3'>All Logo Examples</option>
+                    <option value="0" id='logoexample0'>New Progress</option>
+                    <option value="1" id='logoexample1'>MD CPA - Client</option>
+                    <option value="2" id='logoexample2'>Banks Apparel Co - Client</option>
                 </select>
             </div>
             <div className="flex flex-row items-center justify-center mx-auto w-full">

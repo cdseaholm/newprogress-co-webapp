@@ -36,6 +36,7 @@ const config: Config = {
         ".scrollbar-thin": {
           scrollbarWidth: 'thin',
           scrollbarColor: "rgba(0, 0, 0, 0.5) transparent",
+          scrollbarGutter: 'stable'
         },
         ".scrollbar-webkit": {
           "&::-webkit-scrollbar": {

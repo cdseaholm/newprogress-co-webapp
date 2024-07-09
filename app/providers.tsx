@@ -10,14 +10,14 @@ import InfoModal from '@/components/modals/infoModal';
 export function Providers({children}: { children: React.ReactNode }) {
 
   return (
-    <>
+    <div className='w-full h-full'>
       <ModalSignUp />
       <AlertModal />
       <Contact />
       <InfoModal />
-      <NextUIProvider style={{height: '100%', width: '100%', overflow: 'hidden'}}>
+      <NextUIProvider className='w-full h-full overflow-hidden'>
         {children}
       </NextUIProvider>
-    </>
+    </div>
   )
 }

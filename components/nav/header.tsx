@@ -14,7 +14,7 @@ const Header = () => {
     const isLargeBreakpoint = useStateStore((state) => state.widthQuery) <= 1024 ? true : false;
 
     return (
-        <header className={`flex flex-row justify-center items-center w-full px-5 overflow-hidden`}>
+        <header className={`flex flex-row justify-center items-center px-5 overflow-hidden`}>
             {pathName?.includes('harbor') ? (
                     <HarborNavbar />
                 ) : isBreakpoint ? (

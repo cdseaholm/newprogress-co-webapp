@@ -40,7 +40,7 @@ export default function PageWrapper({children}: Readonly<{children: React.ReactN
             <Providers>
                 <script src="../path/to/flowbite/dist/flowbite.min.js" defer/>
                     <MotionWrap motionKey={pathname ?? ""}>
-                        <main className='flex flex-col h-dvh w-full overflow-hidden' ref={targetRef}>
+                        <main className='h-dvh w-screen overflow-hidden' ref={targetRef}>
                             {pathname !== null &&  pathname !== '/' &&
                                 <Header />
                             }
