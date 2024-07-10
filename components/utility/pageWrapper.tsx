@@ -7,7 +7,6 @@ import { useStateStore } from "@/context/stateStore";
 import { useRef, useEffect } from "react";
 import Header from "../nav/header";
 import { Livvic } from 'next/font/google';
-import { set } from "mongoose";
   
 const livvic = Livvic({subsets: ['latin'], weight: '400', style: 'normal'});
 
@@ -18,9 +17,6 @@ export default function PageWrapper({children}: Readonly<{children: React.ReactN
     const targetRef = useRef<HTMLElement>(null);
     const setWidthQuery = useStateStore((state) => state.setWidthQuery);
     const setHeightQuery = useStateStore((state) => state.setHeightQuery);
-    const setMainChildHeight = useStateStore((state) => state.setMainChildHeight);
-    const setMainChildWidth = useStateStore((state) => state.setMainChildWidth);
-    const isBreakpoint = useStateStore((state) => state.widthQuery) <= 768 ? true : false;
 
     useEffect(() => {
         if (targetRef.current === null) {
@@ -42,16 +38,11 @@ export default function PageWrapper({children}: Readonly<{children: React.ReactN
             setWidthQuery(innerWidth);
             const innerHeight = window.innerHeight;
             setHeightQuery(innerHeight);
-            const aspectRatio = innerHeight / innerWidth;
-            const childHeight = innerHeight * aspectRatio * .95;
-            const childWidth = innerWidth * (1 / aspectRatio) * .95;
-            setMainChildHeight(childHeight);
-            setMainChildWidth(childWidth);
         };
       
         window.addEventListener('resize', updateMedia);
         return () => window.removeEventListener('resize', updateMedia);
-    }, [setWidthQuery, setHeightQuery, setMainChildHeight, setMainChildWidth]);
+    }, [setWidthQuery, setHeightQuery]);
 
     return (
         <div className={`${pathname === '/' ? 'bg-themeWhite/50' : 'bg-themeWhite/80'} h-dvh ${livvic.className} overflow-hidden`}>

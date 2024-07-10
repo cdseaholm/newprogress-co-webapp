@@ -39,19 +39,19 @@ export default function ServicesPage() {
     return (
         <MainChild>
             <InPageHeaderWrap>
-                <div className="flex flex-col items-center justify-start w-full h-full overflow-hidden" style={{maxHeight: 10000}}>
+                <div className="flex flex-col items-center justify-start w-full h-full overflow-hidden">
                         {currentSelection === 0 ?       
                             <ServicesComponent handleClickedTab={handleClickedTab} />
                         : currentSelection === 1 ?
                             <PricingComponent priceUpFront={priceUpFront} handleMonthlyClick={handleMonthlyClick} handleUpFrontClick={handleUpFrontClick} />
-                        : currentSelection === 5 ?
-                            <ContactComponent />
                         : currentSelection === 2 ?
                             <AboutComponent />
                         : currentSelection === 3 ?
                             <TestimonialComponent />
-                        : currentSelection === 4 &&
+                        : currentSelection === 4 ?
                             <Templates /> 
+                        : currentSelection === 5 &&
+                            <ContactComponent />
                         }
                 </div>
             </InPageHeaderWrap>

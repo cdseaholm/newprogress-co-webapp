@@ -8,7 +8,7 @@ import ImageFormat from './imageFormat';
 export function EmblaCarousel({accordianSignal}: {accordianSignal: string}) {
 
     const images = [
-        ["/images/logoLarge.png",
+        ["/images/logoPlain.png",
         "/images/logoLarge2.png",
         "/images/logoLarge3.png",
         "/images/logo4.png",
