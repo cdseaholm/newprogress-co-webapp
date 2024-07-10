@@ -8,10 +8,6 @@ interface StateStore {
     setWidthQuery: (width: number) => void;
     heightQuery: number;
     setHeightQuery: (height: number) => void;
-    mainChildHeight: number;
-    setMainChildHeight: (height: number) => void;
-    mainChildWidth: number;
-    setMainChildWidth: (width: number) => void;
     accordianSignal: string;
     setAccordianSignal: (signal: string) => void;
     panelHeights: number[];
@@ -31,10 +27,6 @@ export const useStateStore = create<StateStore>((set) => ({
     setWidthQuery: (width) => set({ widthQuery: width }),
     heightQuery: 0,
     setHeightQuery: (height) => set({heightQuery: height}),
-    mainChildHeight: 0,
-    setMainChildHeight: (height) => set({mainChildHeight: height}),
-    mainChildWidth: 0,
-    setMainChildWidth: (width) => set({mainChildWidth: width}),
     accordianSignal: '1',
     setAccordianSignal: (signal) => set({accordianSignal: signal}),
     panelHeights: [],
