@@ -39,7 +39,7 @@ export default function PageWrapper({ children }: Readonly<{ children: React.Rea
 
         window.addEventListener('resize', updateMedia);
         return () => window.removeEventListener('resize', updateMedia);
-    }, [setWidthQuery]);
+    }, [setWidthQuery, setHeightQuery]);
 
     return (
         <div className={`${pathname === '/' ? 'bg-themeWhite/50' : 'bg-themeWhite/80'} h-dvh overflow-hidden`}>

@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <PageWrapper>
             {children}
           </PageWrapper>
-          <script src="../path/to/flowbite/dist/flowbite.min.js"/>
+          <script src="../path/to/flowbite/dist/flowbite.min.js" defer/>
         </body>
       </AnimateWrapper>
     </html>
