@@ -4,61 +4,59 @@ import { Providers } from "@/app/providers";
 import { usePathname } from "next/navigation";
 import MotionWrap from "../transitions/motionwrap";
 import { useStateStore } from "@/context/stateStore";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Header from "../nav/header";
 import { Livvic } from 'next/font/google';
-  
-const livvic = Livvic({subsets: ['latin'], weight: '400', style: 'normal'});
+import { WidthContext } from "./widthContext";
 
 
-export default function PageWrapper({children}: Readonly<{children: React.ReactNode;}>) {
-    
+export default function PageWrapper({ children }: Readonly<{ children: React.ReactNode; }>) {
+
     const pathname = usePathname();
     const targetRef = useRef<HTMLElement>(null);
+    const [width, setWidth] = useState<number>(0);
     const setWidthQuery = useStateStore((state) => state.setWidthQuery);
     const setHeightQuery = useStateStore((state) => state.setHeightQuery);
 
     useEffect(() => {
         if (targetRef.current === null) {
-          return;
+            return;
         } else {
-          const newWidth = targetRef.current.offsetWidth;
-          const newHeight = targetRef.current.offsetHeight;
-          if (newWidth > newHeight) {
-            setWidthQuery(newHeight);
-            setHeightQuery(newWidth);
-          } else {
+            const newWidth = targetRef.current.offsetWidth;
+            const newHeight = targetRef.current.offsetHeight;
             setWidthQuery(newWidth);
+            setWidth(newWidth);
             setHeightQuery(newHeight);
-          }
         }
-      
+
         const updateMedia = () => {
             const innerWidth = window.innerWidth;
-            setWidthQuery(innerWidth);
             const innerHeight = window.innerHeight;
+            setWidthQuery(innerWidth);
+            setWidth(innerWidth);
             setHeightQuery(innerHeight);
-        };
-      
+        }
+
         window.addEventListener('resize', updateMedia);
         return () => window.removeEventListener('resize', updateMedia);
-    }, [setWidthQuery, setHeightQuery]);
+    }, [setWidthQuery]);
 
     return (
-        <div className={`${pathname === '/' ? 'bg-themeWhite/50' : 'bg-themeWhite/80'} h-dvh ${livvic.className} overflow-hidden`}>
+        <div className={`${pathname === '/' ? 'bg-themeWhite/50' : 'bg-themeWhite/80'} h-dvh overflow-hidden`}>
             <Providers>
-                <script src="../path/to/flowbite/dist/flowbite.min.js" defer/>
-                    <MotionWrap motionKey={pathname ?? ""}>
-                        <main className='h-dvh w-screen overflow-hidden' ref={targetRef}>
-                            {pathname !== null &&  pathname !== '/' &&
-                                <Header />
-                            }
-                                {children}
-                            {/**{pathname !== null && !isBreakpoint && pathname !== '/' &&
+                <MotionWrap motionKey={pathname ?? ""}>
+                    <main className='flex flex-col h-dvh' ref={targetRef}>
+                        <WidthContext.Provider value={width}>
+                        {pathname !== null && pathname !== '/' &&
+                            <Header />
+                        }
+                        {children}
+                        {/**{pathname !== null && !isBreakpoint && pathname !== '/' &&
                                 <FooterNavBar />
                             }*/}
-                        </main>
-                    </MotionWrap>
+                        </WidthContext.Provider>
+                    </main>
+                </MotionWrap>
             </Providers>
         </div>
     )

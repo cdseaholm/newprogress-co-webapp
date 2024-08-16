@@ -9,7 +9,7 @@ const config: Config = {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
     "./public/**/*.html",
     "./node_modules/@tremor/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/flowbite/**/*.{js,ts,jsx,tsx}"
+    "./node_modules/flowbite-react/lib/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
     extend: {

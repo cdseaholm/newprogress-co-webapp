@@ -10,7 +10,7 @@ import InfoModal from '@/components/modals/infoModal';
 export function Providers({children}: { children: React.ReactNode }) {
 
   return (
-    <div className='w-full h-full'>
+    <>
       <ModalSignUp />
       <AlertModal />
       <Contact />
@@ -18,6 +18,6 @@ export function Providers({children}: { children: React.ReactNode }) {
       <NextUIProvider className='w-full h-full overflow-hidden'>
         {children}
       </NextUIProvider>
-    </div>
+    </>
   )
 }

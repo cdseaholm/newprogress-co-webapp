@@ -6,15 +6,11 @@ import { usePathname } from 'next/navigation';
 import { useStateStore } from '@/context/stateStore';
 import { FiBookOpen, FiClipboard, FiDollarSign, FiFile, FiMail, FiMic } from 'react-icons/fi';
 import Image from "next/legacy/image";
-import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, tabs } from '@nextui-org/react';
 import DropDownNav from '../pagecomponents/services/pageNav/dropDownNav';
-import StaticNav from '../pagecomponents/services/pageNav/staticNav';
-import { set } from 'mongoose';
 
-const SidenavMobile = () => {
+const SidenavMobile = ({isBreakpoint}: {isBreakpoint: boolean}) => {
 
   const pathname = usePathname();
-  const isBreakpoint = useStateStore((state) => state.widthQuery) <= 768 ? true : false;
   const [open, setOpen] = useState(false);
   const setDevCurrentSelection = useStateStore((state) => state.setDevCurrentSelection);
   const currentSelection = useStateStore((state) => state.devCurrentSelection);

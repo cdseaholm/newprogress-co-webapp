@@ -30,8 +30,7 @@ export default function Home() {
   
 
   return (
-    <main>
-      <div className={`landing-page ${isShowing ? 'slide-up' : ''} flex flex-col justify-start items-center text-center w-full h-full ${isBreakpoint ? 'space-y-10' : 'space-y-8'}`} style={{overflow: 'hidden'}}>
+    <div className={`landing-page ${isShowing ? 'slide-up' : ''} flex flex-col justify-start items-center text-center w-full h-full ${isBreakpoint ? 'space-y-10' : 'space-y-8'}`} style={{overflow: 'hidden'}}>
         <ImageFormat imSize={imSize} image={'/images/logoplain.png'} index={0}/>
         <h2 className={`text-xl md:text-2xl font-semibold text-slate-700 pb-2 border-b border-neutral-500 w-4/5`}>
           Empowering Growth with Web Development
@@ -45,6 +44,5 @@ export default function Home() {
           </button>
         </div>
       </div>
-    </main>
   );
 }

@@ -47,11 +47,20 @@ export default function TestimonialComponent() {
         url: 'https://banksapparelco.vercel.app'
     };
 
+    const tc = {
+        imSize: imSize,
+        image: '/images/303tcLogo.png',
+        title: '303 Training Co',
+        blurb: `A site a Denver Brazilian Jiu Jitsu Gym. This site is an example of a site that had already been built and needed updates. I am still currently working with the team there to get their site as top notch as possible. This site was built with Wix.`,
+        url: 'https://www.303trainingcenter.com/'
+    };
+
     return (
         <div className="flex flex-col justify-start items-center rounded-md p-2 text-center scrollbar-thin scrollbar-webkit h-full w-full" style={{overflow: 'auto'}}>
             <div className="w-full" style={{minHeight: '12%'}}/>
             <div className="flex flex-col justify-start items-center w-full h-full py-5 mb-10 space-y-5">
                 <Testimonal {...mdcpa} />
+                <Testimonal {...tc} />
                 <Testimonal {...banks} />
             </div>
         </div>

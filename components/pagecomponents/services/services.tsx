@@ -4,9 +4,10 @@ import openInNewTab from "@/components/listeners/OpenInNewTab";
 import { usePanelHeight } from "@/components/listeners/refHeight";
 import { AccordionPage } from "@/components/utility/accordian";
 import { EmblaCarousel } from "@/components/utility/imageCarousel";
+import { WidthContext } from "@/components/utility/widthContext";
 import { useStateStore } from "@/context/stateStore";
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 
 const PanelOne = ({panelKey}: {panelKey: number}) => {
 
@@ -133,7 +134,9 @@ const PanelFour = ({handleClickedTab, panelKey}: {handleClickedTab: (index: numb
 
 export default function ServicesComponent({handleClickedTab}: {handleClickedTab: (index: number) => void}) {
 
-    const isBreakpoint = useStateStore((state) => state.widthQuery) <= 768 ? true : false;
+    const isBreakpoint = useContext(WidthContext) <= 768 ? true : false;
+    const isMobile = useContext(WidthContext) <= 425 ? true : false;
+    const isSmall = useContext(WidthContext) <= 650 ? true : false;
 
     const titles = [
         `Full Website Creation`,
@@ -157,22 +160,18 @@ export default function ServicesComponent({handleClickedTab}: {handleClickedTab:
     ];
 
     const heightQuery = useStateStore((state) => state.heightQuery);
-    const widthQuery = useStateStore((state) => state.widthQuery);
+    const widthQuery = useContext(WidthContext);
     const aspectRatio = heightQuery / widthQuery;
     const widthRatio = widthQuery * .90;
 
     const heightOne = widthRatio * aspectRatio * .55;
-    const heightTwo = widthRatio * aspectRatio * .70;
+    const heightTwo = widthRatio * aspectRatio * (isMobile ? .7 : isSmall ? .55 : .4);
     const heightThree = widthRatio * aspectRatio * .50;
-    const heightFour = widthRatio * aspectRatio * .90;
+    const heightFour = widthRatio * aspectRatio * (isMobile ? 1.1 : isSmall ? .7 : .5);
 
     const heights = [heightOne, heightTwo, heightThree, heightFour];
 
     return (
-        <div className={`flex flex-col items-center justify-start scrollbar-thin scrollbar-webkit w-full h-full p-2 overflow-y-hidden overflow-x-hidden hover:overflow-y-auto`} style={{maxHeight: '10000px'}}>
-                <div className="w-full" style={{minHeight: '12%'}}/>
                 <AccordionPage panels={panels} heights={heights} openDefault={false} panelPoints={titlePoints} titles={titles} parent={'services'}/>
-                <div className="w-full" style={{minHeight: '12%'}}/>
-        </div>
     );
 }

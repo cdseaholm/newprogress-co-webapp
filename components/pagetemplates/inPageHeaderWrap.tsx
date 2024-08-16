@@ -3,7 +3,7 @@
 export default function InPageHeaderWrap({children}: {children: React.ReactNode}) {
 
   return (
-    <div className="flex flex-col justify-start items-center" style={{overflow: 'hidden', width: '95%', height: '95%'}}>
+    <div className="flex flex-col justify-start items-center h-full w-full" style={{overflow: 'hidden'}}>
       {children}
     </div>
   );

@@ -1,11 +1,12 @@
-import { Inter } from "next/font/google";
+import { Livvic } from "next/font/google";
 import "./globals.css";
 import React from "react";
 import AnimateWrapper from "@/components/utility/animateAndAuthWrapper";
 import PageWrapper from "@/components/utility/pageWrapper";
 import { Metadata } from "next";
+import Script from 'next/script';
 
-const inter = Inter({ subsets: ["latin"] });
+const livvic = Livvic({subsets: ['latin'], weight: '400', style: 'normal'});
 
 export const metadata: Metadata ={
   title: "New Progress Co",
@@ -15,12 +16,13 @@ export const metadata: Metadata ={
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 
   return (
-    <html lang="en">
+    <html lang="en" className={livvic.className}>
       <AnimateWrapper>
-        <body className={inter.className}>
+        <body>
           <PageWrapper>
             {children}
           </PageWrapper>
+          <script src="../path/to/flowbite/dist/flowbite.min.js"/>
         </body>
       </AnimateWrapper>
     </html>
