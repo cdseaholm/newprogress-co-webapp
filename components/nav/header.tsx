@@ -6,19 +6,21 @@ import SidenavMobile from './Navbar';
 import { useStateStore } from '@/context/stateStore';
 import NormalNavBar from './normalNavBar';
 import LargeNavBar from './largeNavBar';
+import { useContext, useRef } from 'react';
+import { WidthContext } from '../utility/widthContext';
 
 
 const Header = () => {
     const pathName = usePathname();
-    const isBreakpoint = useStateStore((state) => state.widthQuery) <= 768 ? true : false;
-    const isLargeBreakpoint = useStateStore((state) => state.widthQuery) <= 1024 ? true : false;
+    const isBreakpoint = useContext(WidthContext) <= 768 ? true : false;
+    const isLargeBreakpoint = useContext(WidthContext) <= 1024 ? true : false;
 
     return (
         <header className={`flex flex-row justify-center items-center px-5 overflow-hidden`}>
             {pathName?.includes('harbor') ? (
                     <HarborNavbar />
                 ) : isBreakpoint ? (
-                    <SidenavMobile />
+                    <SidenavMobile isBreakpoint={isBreakpoint} />
                 ) : !isLargeBreakpoint ? (
                     <LargeNavBar />
                 ) : (

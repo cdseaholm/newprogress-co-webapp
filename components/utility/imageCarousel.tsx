@@ -17,6 +17,7 @@ export function EmblaCarousel({accordianSignal}: {accordianSignal: string}) {
         ["/images/mdcpaLight.png",
         "/images/mdcpaDark.png",
         ],
+        ["/images/303tcLogo.png"],
         ["/images/banksClassic.png",
         "/images/banksClassic2.png",
         "/images/banksPennyLarge.png",
@@ -32,6 +33,7 @@ export function EmblaCarousel({accordianSignal}: {accordianSignal: string}) {
         "New Progress Woods Logo - Version 2"],
         ["MD CPA Light Logo",
         "MD CPA Dark Logo"],
+        ["303 Training Center Logo"],
         ["Banks Apparel Co Classic Logo",
         "Banks Apparel Co Classic Logo - Version 2",
         "Banks Apparel Co Penny Logo"]
@@ -44,7 +46,7 @@ export function EmblaCarousel({accordianSignal}: {accordianSignal: string}) {
         inViewThreshold: 0.7,
     });
 
-    const [selectedIndex, setSelectedIndex] = useState(3);
+    const [selectedIndex, setSelectedIndex] = useState(4);
     const [scrollSnaps, setScrollSnaps] = useState([]);
 
     const scrollPrev = useCallback(() => {
@@ -56,9 +58,9 @@ export function EmblaCarousel({accordianSignal}: {accordianSignal: string}) {
 
     const imSize = 180;
     
-    const groupedImages = selectedIndex === 3 ? [...images[0], ...images[1], ...images[2]] : images[selectedIndex];
+    const groupedImages = selectedIndex === 4 ? [...images[0], ...images[1], ...images[2], ...images[3]] : images[selectedIndex];
 
-    const groupedTitles = selectedIndex === 3 ? [...titles[0], ...titles[1], ...titles[2]] : titles[selectedIndex];
+    const groupedTitles = selectedIndex === 4 ? [...titles[0], ...titles[1], ...titles[2], ...titles[3]] : titles[selectedIndex];
 
     return (
         <div className={`flex flex-col items-center justify-evenly h-full w-full ${accordianSignal === '3' ? 'border border-themeStone' : ''} rounded-md py-2 space-y-2`}>
@@ -66,10 +68,11 @@ export function EmblaCarousel({accordianSignal}: {accordianSignal: string}) {
                 <select className="bg-transparent hover:bg-themeAcqua hover:underline text-xs md:text-sm rounded-md border border-themeStone" name='logoexampleselect' id='logoexampleselect' defaultValue={'4'} onChange={(e) => {
                     setSelectedIndex(Number((e.target as HTMLSelectElement).value));
                 }}>
-                    <option value="3" id='logoexample3'>All Logo Examples</option>
+                    <option value="4" id='logoexample4'>All Logo Examples</option>
                     <option value="0" id='logoexample0'>New Progress</option>
                     <option value="1" id='logoexample1'>MD CPA - Client</option>
-                    <option value="2" id='logoexample2'>Banks Apparel Co - Client</option>
+                    <option value="2" id='logoexample2'>303 Training Center - Client</option>
+                    <option value="3" id='logoexample3'>Banks Apparel Co - Client</option>
                 </select>
             </div>
             <div className="flex flex-row items-center justify-center mx-auto w-full">

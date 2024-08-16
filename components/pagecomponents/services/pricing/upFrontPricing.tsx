@@ -68,7 +68,7 @@ export default function UpFrontPricing() {
     const setInfo = useModalStore((state) => state.setInfo);
     
     return (
-        <div className={`relative overflow-x-hidden w-full md:w-4/5 h-full`}>
+        <div className={`relative overflow-x-hidden w-full h-full`}>
             <table className="w-full h-4/5 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 shadow-md sm:rounded-lg bg-gradient-to-tr from-themeAcqua/50 to-themeWhite/80">
                 <thead className="text-xs text-gray-700 uppercase dark:text-gray-400">
                     <tr>

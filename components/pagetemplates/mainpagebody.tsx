@@ -3,7 +3,7 @@
 const MainPageBody = ({children}: {children: React.ReactNode}) => {
 
     return (
-      <div className={`overflow-hidden h-full w-full rounded-md`}>
+      <div className={`overflow-hidden h-full w-full`}>
           {children}
       </div>
     );
