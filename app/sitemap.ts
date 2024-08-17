@@ -33,5 +33,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
       changeFrequency: `weekly`
     },
+    {
+      url: `${getBaseUrl()}/confirmation`,
+      lastModified: new Date().toISOString(),
+      priority: 0.4,
+      changeFrequency: `weekly`
+    },
   ]
 }
