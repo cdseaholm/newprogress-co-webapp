@@ -5,6 +5,7 @@ import AnimateWrapper from "@/components/utility/animateAndAuthWrapper";
 import PageWrapper from "@/components/utility/pageWrapper";
 import { Metadata } from "next";
 import Script from 'next/script';
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const livvic = Livvic({ subsets: ['latin'], weight: '400', style: 'normal' });
 
@@ -19,15 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={livvic.className}>
       <AnimateWrapper>
         <body>
-          <Script src="https://www.googletagmanager.com/gtag/js?id=G-FYZSYN60M3" strategy="afterInteractive" id="googleTag" />
-          <Script strategy="afterInteractive" id="googleDataLayer">
-            {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-FYZSYN60M3');
-            `}
-          </Script>
+          <GoogleAnalytics gaId="G-FYZSYN60M3" />
           <PageWrapper>
             {children}
           </PageWrapper>
