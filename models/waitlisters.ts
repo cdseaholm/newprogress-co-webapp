@@ -1,4 +1,5 @@
-import mongoose, { Schema, models } from "mongoose";
+import mongoose, { Model, Schema, models } from "mongoose";
+import { IWaitlister } from "./types/waitlister";
 
 const waitlisterSchema = new Schema(
     {
@@ -18,4 +19,4 @@ const waitlisterSchema = new Schema(
 
 const Waitlister = models.Waitlister || mongoose.model("Waitlister", waitlisterSchema);
 
-export default Waitlister;
+export default Waitlister as Model<IWaitlister>;

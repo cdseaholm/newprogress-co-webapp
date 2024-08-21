@@ -6,7 +6,6 @@ import MotionWrap from "../transitions/motionwrap";
 import { useStateStore } from "@/context/stateStore";
 import { useRef, useEffect, useState } from "react";
 import Header from "../nav/header";
-import { Livvic } from 'next/font/google';
 import { WidthContext } from "./widthContext";
 
 

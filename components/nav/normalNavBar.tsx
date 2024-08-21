@@ -47,10 +47,11 @@ export default function NormalNavBar() {
                   </div>
                 </Link>
                 <div className='mx-2'>|</div>
-                <Link className={`rounded-lg p-1 font-semibold ${pathname === '/npapps' ? 'underline font-bold text-themeStone/80 hover:cursor-default hover:text-themeStone/50 md:text-xs' : 'hover:bg-themeAcqua hover:text-black/70 md:text-xs'}`} href={`/npapps`}>
+                {/**<Link className={`rounded-lg p-1 font-semibold ${pathname === '/npapps' ? 'underline font-bold text-themeStone/80 hover:cursor-default hover:text-themeStone/50 md:text-xs' : 'hover:bg-themeAcqua hover:text-black/70 md:text-xs'}`} href={`/npapps`}>
                   <p>NP Apps</p>
                 </Link>
                 <div className='mx-2'>|</div>
+                */}
                 <Link className={`rounded-lg p-1 font-semibold ${pathname === '/webdevelopment' ? 'underline font-bold text-themeStone/80 hover:cursor-default hover:text-themeStone/50 md:text-xs' : 'hover:bg-themeAcqua hover:text-black/70 md:text-xs hover:md:text-sm'}`} href={`/webdevelopment`}>
                   <p>Web Development</p>
                 </Link>
@@ -59,10 +60,10 @@ export default function NormalNavBar() {
             <div className='flex flex-row items-center justify-center space-x-2'>
               <p className='font-semibold text-sm text-themeStone/80'>{tabs[currentSelection]}</p>
               {pathname === '/webdevelopment' && (
-                <DropDownNav open={open} setOpen={setOpen} tabs={tabs} parent={"webDevelopment"} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons} />
+                <DropDownNav open={open} setOpen={setOpen} tabs={tabs} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons} />
               )}
               {pathname === '/npapps' && (
-                <DropDownNav open={open} setOpen={setOpen} tabs={tabs} parent={"npApps"} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons} />
+                <DropDownNav open={open} setOpen={setOpen} tabs={tabs} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons} />
               )}
             </div>
           </div>

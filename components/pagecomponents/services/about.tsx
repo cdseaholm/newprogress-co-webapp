@@ -1,12 +1,9 @@
 'use client'
 
 import { AccordionPage } from "@/components/utility/accordian";
-import ImageFormat from "@/components/utility/imageFormat";
 import { useStateStore } from "@/context/stateStore";
 
 const PanelOne = ({panelKey}: {panelKey: number}) => {
-
-    const isBreakpoint = useStateStore((state) => state.widthQuery) <= 768 ? true : false;
 
     return (
         <div className="flex flex-col justify-center items-center rounded-b-md w-full h-full text-center shadow-lg text-black backdrop-blur-sm" key={panelKey}>
@@ -28,9 +25,6 @@ const PanelTwo = ({blurb, panelKey}: {blurb: string, panelKey: number}) => {
 
 export default function AboutComponent() {
 
-    const isBreakpoint = useStateStore((state) => state.widthQuery) <= 768 ? true : false;
-    const isLargeBreakpoint = useStateStore((state) => state.widthQuery) >= 1024 ? true : false;
-
     const panelTitles = [
         'About New Progress',
         'About Carl Seaholm',
@@ -43,9 +37,9 @@ export default function AboutComponent() {
     ];
 
     const panels = [
-        <PanelTwo key={0} blurb={blurbs[0]} panelKey={1} />,
+        <PanelTwo key={0} blurb={blurbs[0] ? blurbs[0] : ''} panelKey={1} />,
         <PanelOne key={1} panelKey={0} />,
-        <PanelTwo key={2} blurb={blurbs[1]} panelKey={2} />
+        <PanelTwo key={2} blurb={blurbs[1] ? blurbs[1] : ''} panelKey={2} />
     ];
 
     const panelPoints = [

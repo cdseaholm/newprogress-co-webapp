@@ -5,7 +5,7 @@ import { FiMenu } from "react-icons/fi";
 import React from "react";
 import SocialButton from "@/components/buttons/socialIconButton";
 
-export default function DropDownNav({ open, setOpen, tabs, handleClickedTab, parent, currentSelection, icons }: { open: boolean, setOpen: (open: boolean) => void, tabs: string[], handleClickedTab: (index: number) => void, parent: string, currentSelection: number, icons: JSX.Element[]}) {
+export default function DropDownNav({ open, setOpen, tabs, handleClickedTab, currentSelection, icons }: { open: boolean, setOpen: (open: boolean) => void, tabs: string[], handleClickedTab: (index: number) => void, currentSelection: number, icons: JSX.Element[]}) {
     
     const ref = React.useRef<HTMLDivElement>(null);
 

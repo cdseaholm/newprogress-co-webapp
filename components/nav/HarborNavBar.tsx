@@ -1,3 +1,4 @@
+{/**
 'use client'
 
 import React, { useState } from 'react';
@@ -113,3 +114,4 @@ function Sidenav({ open, toggle, children }: { open: boolean; toggle: () => void
 }
 
 export default HarborNavbar;
+*/}

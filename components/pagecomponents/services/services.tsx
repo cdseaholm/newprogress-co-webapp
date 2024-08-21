@@ -1,7 +1,6 @@
 'use client'
 
 import openInNewTab from "@/components/listeners/OpenInNewTab";
-import { usePanelHeight } from "@/components/listeners/refHeight";
 import { AccordionPage } from "@/components/utility/accordian";
 import { EmblaCarousel } from "@/components/utility/imageCarousel";
 import { WidthContext } from "@/components/utility/widthContext";
@@ -42,17 +41,17 @@ const PanelOne = ({panelKey}: {panelKey: number}) => {
                     {`See some client examples here:`}
                 </p>
                 <ul className="list-disc text-sm md:text-base grid grid-cols-1 grid-rows-2 items-center gap-1 pt-2 text-center">
-                    <Link href={`https://banksapparelco.vercel.app`} className="text-base md:text-lg font-bold flex-wrap mx-2 my-1 text-stone-700 hover:text-black bg-transparent px-1 py-1 rounded-md" onClick={(e) => {
-                        e.preventDefault();
-                        openInNewTab('https://banksapparelco.vercel.app');
-                    }}>
-                        Banks Apparel Co
-                    </Link>
                     <Link href={`https://www.mdcpa-llc.com`} className="text-base md:text-lg font-bold flex-wrap mx-2 my-1 text-stone-700 hover:text-black bg-transparent px-1 py-1 rounded-md" onClick={(e) => {
                         e.preventDefault();
                         openInNewTab('https://www.mdcpa-llc.com');
                     }}>
                         MD CPA
+                    </Link>
+                    <Link href={`https://www.303trainingcenter.com`} className="text-base md:text-lg font-bold flex-wrap mx-2 my-1 text-stone-700 hover:text-black bg-transparent px-1 py-1 rounded-md" onClick={(e) => {
+                        e.preventDefault();
+                        openInNewTab('https://www.303trainingcenter.com');
+                    }}>
+                        303 Training Center
                     </Link>
                 </ul>
             </div>
@@ -134,7 +133,6 @@ const PanelFour = ({handleClickedTab, panelKey}: {handleClickedTab: (index: numb
 
 export default function ServicesComponent({handleClickedTab}: {handleClickedTab: (index: number) => void}) {
 
-    const isBreakpoint = useContext(WidthContext) <= 768 ? true : false;
     const isMobile = useContext(WidthContext) <= 425 ? true : false;
     const isSmall = useContext(WidthContext) <= 650 ? true : false;
 
@@ -148,7 +146,7 @@ export default function ServicesComponent({handleClickedTab}: {handleClickedTab:
     const titlePoints = [
         [`Flexible Pricing`, `Customizability`, `Basic site ready to go from Launch`, `Modern Styles and UI`],
         [`Low cost`, `Wide Range of Available Options`, `Good for long term relationships`, `Good for quick one time needs`],
-        [`3 logos to begnin with`, `Customizability`, `Modern Styles and High Quality`, `Affordable prices`],
+        [`3 logos to begin with`, `Customizability`, `Modern Styles and High Quality`, `Affordable prices`],
         [`Good for Long term relationships`, `No hassle on client end`, `Affordable Prices`, `Strong site upkeep`]
     ];
 

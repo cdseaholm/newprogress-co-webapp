@@ -22,7 +22,7 @@ export function EmblaCarousel({accordianSignal}: {accordianSignal: string}) {
         "/images/banksClassic2.png",
         "/images/banksPennyLarge.png",
         ]
-    ];
+    ] as string[][];
 
     const titles = [
         ["New Progress Classic Logo",
@@ -47,7 +47,6 @@ export function EmblaCarousel({accordianSignal}: {accordianSignal: string}) {
     });
 
     const [selectedIndex, setSelectedIndex] = useState(4);
-    const [scrollSnaps, setScrollSnaps] = useState([]);
 
     const scrollPrev = useCallback(() => {
         if (emblaApi) emblaApi.scrollPrev();
@@ -58,9 +57,9 @@ export function EmblaCarousel({accordianSignal}: {accordianSignal: string}) {
 
     const imSize = 180;
     
-    const groupedImages = selectedIndex === 4 ? [...images[0], ...images[1], ...images[2], ...images[3]] : images[selectedIndex];
+    const groupedImages = selectedIndex === 4 ? [...images[0] as string[], ...images[1] as string[], ...images[2] as string[], ...images[3] as string[]] : images[selectedIndex] as string[];
 
-    const groupedTitles = selectedIndex === 4 ? [...titles[0], ...titles[1], ...titles[2], ...titles[3]] : titles[selectedIndex];
+    const groupedTitles = selectedIndex === 4 ? [...titles[0] as string[], ...titles[1] as string[], ...titles[2] as string[], ...titles[3] as string[]] : titles[selectedIndex] as string[];
 
     return (
         <div className={`flex flex-col items-center justify-evenly h-full w-full ${accordianSignal === '3' ? 'border border-themeStone' : ''} rounded-md py-2 space-y-2`}>
@@ -78,7 +77,7 @@ export function EmblaCarousel({accordianSignal}: {accordianSignal: string}) {
             <div className="flex flex-row items-center justify-center mx-auto w-full">
                 <div className="overflow-hidden" ref={emblaRef}>
                     <div className="flex flex-row">
-                        {groupedImages.map((image, index) => (
+                        {groupedImages && groupedImages.map((image, index) => (
                         <div className="relative flex flex-none flex-wrap lg:flex-nowrap w-full mx-10" key={image}>
                             <div className="overflow-hidden cursor-pointer w-full">
                                 <div className='flex flex-col items-center justify-center w-full h-full'>
@@ -86,7 +85,7 @@ export function EmblaCarousel({accordianSignal}: {accordianSignal: string}) {
                                     <p className='text-sm md:text-base'>
                                         {groupedTitles[index]}
                                     </p>
-                                    <p className='text-xs md:text-sm'>{`${index + 1} of ${groupedImages.length}`}</p>
+                                    <p className='text-xs md:text-sm'>{`${index + 1} of ${groupedImages && groupedImages.length}`}</p>
                                 </div>
                             </div>
                         </div>
