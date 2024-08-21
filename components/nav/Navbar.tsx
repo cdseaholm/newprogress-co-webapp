@@ -45,10 +45,11 @@ const SidenavMobile = ({isBreakpoint}: {isBreakpoint: boolean}) => {
                 <Image src='/images/logoBG.png' alt='New Progress Co Logo' className='rounded-full' priority sizes='auto' width={imSize} height={imSize} />
               </div>
             </Link>
-            <Link className={`hover:text-themeStone/80 rounded-lg p-1 ml-1 font-semibold text-xs ${pathname === '/npapps' ? 'underline font-bold text-themeStone hover:cursor-default hover:text-themeStone/80' : 'hover:bg-themeAcqua hover:text-black/70'}`} href={`/npapps`}>
+            {/**<Link className={`hover:text-themeStone/80 rounded-lg p-1 ml-1 font-semibold text-xs ${pathname === '/npapps' ? 'underline font-bold text-themeStone hover:cursor-default hover:text-themeStone/80' : 'hover:bg-themeAcqua hover:text-black/70'}`} href={`/npapps`}>
               <p>NP Apps</p>
             </Link>
             <div className='mx-1'>|</div>
+            */}
             <Link className={` hover:text-themeStone/80 rounded-lg p-1 font-semibold text-xs ${pathname === '/webdevelopment' ? 'underline text-themeStone hover:cursor-default hover:text-themeStone/80' : 'hover:bg-themeAcqua hover:text-black/70'}`} href={`/webdevelopment`}>
               <p>Web Development</p>
             </Link>
@@ -57,10 +58,10 @@ const SidenavMobile = ({isBreakpoint}: {isBreakpoint: boolean}) => {
         <div className='flex flex-row items-center justify-center space-x-2'>
           <p className='font-semibold text-xs text-themeStone/80'>{tabs[currentSelection]}</p>
             {pathname === '/webdevelopment' && (
-              <DropDownNav open={open} setOpen={setOpen} tabs={tabs} parent={"webDevelopment"} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons} />
+              <DropDownNav open={open} setOpen={setOpen} tabs={tabs} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons} />
             )}
             {pathname === '/npapps' && (
-              <DropDownNav open={open} setOpen={setOpen} tabs={tabs} parent={"npApps"} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons} />
+              <DropDownNav open={open} setOpen={setOpen} tabs={tabs} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons} />
             )}
           </div>
         </div>

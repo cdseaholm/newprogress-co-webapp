@@ -1,14 +1,10 @@
 'use client'
 
 import { useStateStore } from '@/context/stateStore';
-import Image from 'next/image';
 import React from 'react';
 import ImageFormat from './imageFormat';
 
 export const AccordionPage = ({panels, heights, openDefault, panelPoints, titles, parent}: {panels: JSX.Element[], heights: number[], openDefault: boolean, panelPoints: string[][], titles: string[], parent: string}) => {
-
-    const isBreakpoint = useStateStore((state) => state.widthQuery) <= 768 ? true : false;
-    const isLargeBreakpoint = useStateStore((state) => state.widthQuery) <= 1024 ? true : false;
 
     const defaultPanel = openDefault ? 'panel-1' : '';
 
@@ -16,7 +12,7 @@ export const AccordionPage = ({panels, heights, openDefault, panelPoints, titles
         <Accordion defaultPanel={defaultPanel}>
             <div className={`flex flex-col justify-center items-center w-full space-y-2 mb-10`}>
             {panels.map((panel, index) => {
-                const height = index === 0 ? heights[index] : index === 1 ? heights[index] : index === 2 ? heights[index] : index === 3 ? heights[index] : heights[0];
+                const height = index === 0 ? heights[index] as number : index === 1 ? heights[index] as number : index === 2 ? heights[index] as number : index === 3 ? heights[index] as number : heights[0] as number;
                 const id = `panel-${index + 1}`;
 
                 return (
@@ -36,7 +32,7 @@ export const AccordionPage = ({panels, heights, openDefault, panelPoints, titles
 
 /* Logic */
 
-const Context = React.createContext({selected: '', toggleItem: (id: string) => () => {}});
+const Context = React.createContext({selected: '', toggleItem: (_id: string) => () => {}});
 
 function Accordion({ children, defaultPanel }: { children: React.ReactNode; defaultPanel?: string }) {
     const [selected, setSelected] = React.useState(defaultPanel || '');
@@ -49,6 +45,7 @@ function Accordion({ children, defaultPanel }: { children: React.ReactNode; defa
         },
         [setAccordianSignal],
     );
+
     return (
         <Context.Provider value={{ selected, toggleItem }}>
             {children}
@@ -66,7 +63,7 @@ const style = {
 
 //${selected === toggle ? '' : 'rounded-b-md border-b delay-200'}
 
-function AccordionItem({ toggle, children, className, panelPoints, panelPointsIndex, parent, id, name }: { toggle: string; children: React.ReactNode; className: string, panelPoints?: string[], panelPointsIndex?: number, parent: string, id: string, name: string}) {
+function AccordionItem({ toggle, children, className, panelPoints, panelPointsIndex, parent, id }: { toggle: string; children: React.ReactNode; className: string, panelPoints?: string[], panelPointsIndex?: number, parent: string, id: string, name: string}) {
     const { selected, toggleItem } = useAccordion();
     const isBreakpoint = useStateStore((state) => state.widthQuery) <= 768 ? true : false;
     const imSize = isBreakpoint ? 100 : 150;

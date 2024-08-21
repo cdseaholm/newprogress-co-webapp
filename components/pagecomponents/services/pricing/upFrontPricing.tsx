@@ -1,7 +1,7 @@
 'use client'
 
 import { useModalStore } from "@/context/modalStore";
-import React, { use } from "react";
+import React from "react";
 import { FiMoreHorizontal } from "react-icons/fi";
 
 

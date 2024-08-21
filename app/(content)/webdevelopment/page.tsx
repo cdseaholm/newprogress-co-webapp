@@ -2,8 +2,6 @@
 
 import AboutComponent from "@/components/pagecomponents/services/about";
 import ContactComponent from "@/components/pagecomponents/services/contact";
-import DropDownNav from "@/components/pagecomponents/services/pageNav/dropDownNav";
-import StaticNav from "@/components/pagecomponents/services/pageNav/staticNav";
 import PricingComponent from "@/components/pagecomponents/services/pricing";
 import ServicesComponent from "@/components/pagecomponents/services/services";
 import Templates from "@/components/pagecomponents/services/templates";
@@ -24,7 +22,7 @@ export default function ServicesPage() {
         setCurrentSelection(index);
     }
 
-    const [priceUpFront, setPriceUpFront] = useState(true);
+    const [priceUpFront, setPriceUpFront] = useState(false);
 
     const handleUpFrontClick = () => {
         setPriceUpFront(true);

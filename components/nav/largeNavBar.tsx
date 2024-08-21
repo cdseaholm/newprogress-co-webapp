@@ -1,10 +1,7 @@
 import { useStateStore } from "@/context/stateStore";
-import { Dropdown, DropdownTrigger, Button, DropdownMenu, DropdownItem } from "@nextui-org/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
 import { FiClipboard, FiDollarSign, FiMail, FiBookOpen, FiMic, FiFile } from "react-icons/fi";
-import SocialButton from "../buttons/socialIconButton";
 import Image from "next/image";
 import StaticNav from "../pagecomponents/services/pageNav/staticNav";
 
@@ -46,10 +43,11 @@ export default function LargeNavBar() {
                         </div>
                     </Link>
                     <div className='mx-2'>|</div>
-                        <Link className={` hover:text-themeStone/80 rounded-lg p-1 font-semibold ${pathname === '/npapps' ? 'underline font-bold text-themeStone hover:cursor-default hover:text-themeStone/80 md:text-xs' : 'hover:bg-themeAcqua hover:text-black/70 md:text-xs hover:md:text-sm'}`} href={`/npapps`}>
+                        {/**<Link className={` hover:text-themeStone/80 rounded-lg p-1 font-semibold ${pathname === '/npapps' ? 'underline font-bold text-themeStone hover:cursor-default hover:text-themeStone/80 md:text-xs' : 'hover:bg-themeAcqua hover:text-black/70 md:text-xs hover:md:text-sm'}`} href={`/npapps`}>
                             <p>NP Apps</p>
                         </Link>
                         <div className='mx-2'>|</div>
+                        */}
                         <Link className={` hover:text-themeStone/80 rounded-lg p-1 font-semibold ${pathname === '/webdevelopment' ? 'underline font-bold text-themeStone hover:cursor-default hover:text-themeStone/80 md:text-xs' : 'hover:bg-themeAcqua hover:text-black/70 md:text-xs hover:md:text-sm'}`} href={`/webdevelopment`}>
                             <p>Web Development</p>
                         </Link>
@@ -59,7 +57,7 @@ export default function LargeNavBar() {
                     <div className='flex flex-row items-center justify-between space-x-2'>
                         {tabs.map((tab, index) => (
                             <div key={index}>
-                                <StaticNav tab={tab} index={index} disabled={currentSelection === index ? true : false} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons} />
+                                <StaticNav tab={tab} index={index} disabled={currentSelection === index ? true : false} handleClickedTab={handleClickedTab} icons={icons} />
                             </div>
                         ))}
                     </div>

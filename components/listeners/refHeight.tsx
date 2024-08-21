@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useLayoutEffect, useState, useRef } from "react";
+import React, { useLayoutEffect, useState } from "react";
 
 export function usePanelHeight(ref: React.RefObject<HTMLDivElement>) {
     const [height, setHeight] = useState(0);

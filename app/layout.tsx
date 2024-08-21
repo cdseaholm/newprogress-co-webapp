@@ -4,7 +4,6 @@ import React from "react";
 import AnimateWrapper from "@/components/utility/animateAndAuthWrapper";
 import PageWrapper from "@/components/utility/pageWrapper";
 import { Metadata } from "next";
-import Script from 'next/script';
 import { GoogleAnalytics } from '@next/third-parties/google'
 
 const livvic = Livvic({ subsets: ['latin'], weight: '400', style: 'normal' });

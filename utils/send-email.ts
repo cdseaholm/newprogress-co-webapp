@@ -1,4 +1,4 @@
-import FormData, { contactFormSchema } from '@/components/modals/contact';
+import { contactFormSchema } from '@/components/modals/contact';
 import { z } from 'zod';
 
 export async function sendEmail(data: z.infer<typeof contactFormSchema>) {

@@ -3,7 +3,7 @@
 import {Button} from "@nextui-org/react";
 import React from "react";
 
-export default function StaticNav({tab, index, disabled, handleClickedTab, currentSelection, icons}: {tab: string, index: number, disabled: boolean, handleClickedTab: (index: number) => void, currentSelection: number, icons: JSX.Element[]}) {
+export default function StaticNav({tab, index, disabled, handleClickedTab, icons}: {tab: string, index: number, disabled: boolean, handleClickedTab: (index: number) => void, icons: JSX.Element[]}) {
     
 
     return (
