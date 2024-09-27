@@ -8,7 +8,7 @@ import ImageFormat from './imageFormat';
 export function EmblaCarousel({accordianSignal}: {accordianSignal: string}) {
 
     const images = [
-        ["/images/logoPlain.png",
+        [
         "/images/logoLarge2.png",
         "/images/logoLarge3.png",
         "/images/logo4.png",
@@ -25,7 +25,7 @@ export function EmblaCarousel({accordianSignal}: {accordianSignal: string}) {
     ] as string[][];
 
     const titles = [
-        ["New Progress Classic Logo",
+        [
         "New Progress Classic Logo - Version 2",
         "New Progress Woods Logo",
         "New Progress Inner Window Logo",
@@ -78,7 +78,7 @@ export function EmblaCarousel({accordianSignal}: {accordianSignal: string}) {
                 <div className="overflow-hidden" ref={emblaRef}>
                     <div className="flex flex-row">
                         {groupedImages && groupedImages.map((image, index) => (
-                        <div className="relative flex flex-none flex-wrap lg:flex-nowrap w-full mx-10" key={image}>
+                        <div className="relative flex flex-none flex-wrap lg:flex-nowrap w-full" key={image}>
                             <div className="overflow-hidden cursor-pointer w-full">
                                 <div className='flex flex-col items-center justify-center w-full h-full'>
                                     <ImageFormat image={image} imSize={imSize} index={index} />
