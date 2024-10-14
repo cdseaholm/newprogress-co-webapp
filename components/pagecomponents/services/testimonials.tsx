@@ -56,8 +56,7 @@ export default function TestimonialComponent() {
     };
 
     return (
-        <div className="flex flex-col justify-start items-center rounded-md p-2 text-center scrollbar-thin scrollbar-webkit h-full w-full" style={{overflow: 'auto'}}>
-            <div className="w-full" style={{minHeight: '12%'}}/>
+        <div className="flex flex-col justify-start items-center rounded-md p-2 text-center h-full w-full">
             <div className="flex flex-col justify-start items-center w-full h-full py-5 mb-10 space-y-5">
                 <Testimonal {...mdcpa} />
                 <Testimonal {...tc} />

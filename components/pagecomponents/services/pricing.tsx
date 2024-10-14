@@ -17,10 +17,10 @@ export default function PricingComponent({ priceUpFront, handleMonthlyClick, han
                 </Button>
             </div>
             <div className="relative w-full h-full overflow-hidden">
-                <div className={`absolute top-5 left-0 w-full h-full transition-transform duration-500 ease-in-out ${priceUpFront ? 'transform translate-x-full' : 'transform translate-x-0'}`}>
+                <div className={`absolute top-5 left-0 w-full h-full transition-transform duration-500 ease-in-out ${!priceUpFront ? 'transform translate-x-0' : 'transform -translate-x-full'}`}>
                     <MonthlyPricing />
                 </div>
-                <div className={`absolute top-5 left-0 w-full h-full transition-transform duration-500 ease-in-out ${priceUpFront ? 'transform translate-x-0' : 'transform -translate-x-full'}`}>
+                <div className={`absolute top-5 left-0 w-full h-full transition-transform duration-500 ease-in-out ${!priceUpFront ? 'transform translate-x-full' : 'transform translate-x-0'}`}>
                     <UpFrontPricing />
                 </div>
             </div>

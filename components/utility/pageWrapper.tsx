@@ -7,6 +7,7 @@ import { useStateStore } from "@/context/stateStore";
 import { useRef, useEffect, useState } from "react";
 import Header from "../nav/header";
 import { WidthContext } from "./widthContext";
+import Spinner from "./spinner";
 
 
 export default function PageWrapper({ children }: Readonly<{ children: React.ReactNode; }>) {
@@ -16,9 +17,11 @@ export default function PageWrapper({ children }: Readonly<{ children: React.Rea
     const [width, setWidth] = useState<number>(0);
     const setWidthQuery = useStateStore((state) => state.setWidthQuery);
     const setHeightQuery = useStateStore((state) => state.setHeightQuery);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (targetRef.current === null) {
+            setLoading(false);
             return;
         } else {
             const newWidth = targetRef.current.offsetWidth;
@@ -37,6 +40,7 @@ export default function PageWrapper({ children }: Readonly<{ children: React.Rea
         }
 
         window.addEventListener('resize', updateMedia);
+        setLoading(false);
         return () => window.removeEventListener('resize', updateMedia);
     }, [setWidthQuery, setHeightQuery]);
 
@@ -45,15 +49,18 @@ export default function PageWrapper({ children }: Readonly<{ children: React.Rea
             <Providers>
                 <MotionWrap motionKey={pathname ?? ""}>
                     <main className='flex flex-col h-dvh' ref={targetRef}>
+                        {loading ? (
+                            <Spinner />
+                        ) : (
                         <WidthContext.Provider value={width}>
-                        {pathname !== null && pathname !== '/' &&
-                            <Header />
-                        }
-                        {children}
-                        {/**{pathname !== null && !isBreakpoint && pathname !== '/' &&
+                            {pathname !== null && pathname !== '/' &&
+                                <Header />
+                            }
+                            {children}
+                            {/**{pathname !== null && !isBreakpoint && pathname !== '/' &&
                                 <FooterNavBar />
                             }*/}
-                        </WidthContext.Provider>
+                        </WidthContext.Provider>)}
                     </main>
                 </MotionWrap>
             </Providers>
