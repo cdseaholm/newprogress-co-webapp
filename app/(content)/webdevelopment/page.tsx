@@ -4,7 +4,6 @@ import AboutComponent from "@/components/pagecomponents/services/about";
 import ContactComponent from "@/components/pagecomponents/services/contact";
 import PricingComponent from "@/components/pagecomponents/services/pricing";
 import ServicesComponent from "@/components/pagecomponents/services/services";
-import Templates from "@/components/pagecomponents/services/templates";
 import TestimonialComponent from "@/components/pagecomponents/services/testimonials";
 import MainChild from "@/components/pagetemplates/mainchild";
 import { WidthContext } from "@/components/utility/widthContext";
@@ -32,6 +31,8 @@ export default function ServicesPage() {
         setPriceUpFront(false);
     };
 
+    //taking out for now {/** : currentSelection === 4 ? (<Templates />) */}
+
     return (
         <MainChild>
             <div className="flex flex-col items-center justify-start w-full h-full overflow-auto scrollbar-thin" style={{maxHeight: 10000}}>
@@ -48,9 +49,7 @@ export default function ServicesPage() {
                     <AboutComponent />
                 ) : currentSelection === 3 ? (
                     <TestimonialComponent />
-                ) : currentSelection === 4 ? (
-                    <Templates />
-                ) : currentSelection === 5 && (
+                ) : currentSelection === 4 && (
                     <ContactComponent />
                 )}
             </div>

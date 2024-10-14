@@ -1,7 +1,7 @@
 import { useStateStore } from "@/context/stateStore";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FiClipboard, FiDollarSign, FiMail, FiBookOpen, FiMic, FiFile } from "react-icons/fi";
+import { FiClipboard, FiDollarSign, FiMail, FiBookOpen, FiMic } from "react-icons/fi";
 import Image from "next/image";
 import StaticNav from "../pagecomponents/services/pageNav/staticNav";
 
@@ -12,18 +12,19 @@ export default function LargeNavBar() {
   const setCurrentSelection = useStateStore((state) => state.setDevCurrentSelection);
   const currentSelection = useStateStore((state) => state.devCurrentSelection);
 
-  const tabs = pathname === '/npapps' ? ['Harbor', 'Financr', 'Trackr', 'Gamr'] : ['Services', 'Pricing', 'About', 'Testimonials', 'Templates', 'Contact'];
+  const tabs = pathname === '/npapps' ? ['Harbor', 'Financr', 'Trackr', 'Gamr'] : ['Services', 'Pricing', 'About', 'Testimonials', 'Contact'];
 
   const handleClickedTab = (index: number) => {
     setCurrentSelection(index);
   }
+
+  //Taking out for now {/**<FiFile key={'templates'}/>, */}
 
   const icons = pathname === '/npapps' ? [] : [
     <FiClipboard key={'clipboard'}  />,
     <FiDollarSign key={'pricing'}/>,
     <FiBookOpen key={'about'}/>,
     <FiMic key={'testimonials'}/>,
-    <FiFile key={'templates'}/>,
     <FiMail key={'contact'}/>
   ];
 

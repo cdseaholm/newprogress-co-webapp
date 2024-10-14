@@ -22,27 +22,27 @@ export default function NormalNavBar() {
   }
 
   const icons = pathname === '/npapps' ? [] : [
-    <FiClipboard key={'clipboard'}  />,
-    <FiDollarSign key={'pricing'}/>,
-    <FiBookOpen key={'about'}/>,
-    <FiMic key={'testimonials'}/>,
-    <FiFile key={'templates'}/>,
-    <FiMail key={'contact'}/>
+    <FiClipboard key={'clipboard'} />,
+    <FiDollarSign key={'pricing'} />,
+    <FiBookOpen key={'about'} />,
+    <FiMic key={'testimonials'} />,
+    <FiFile key={'templates'} />,
+    <FiMail key={'contact'} />
   ];
 
   const imSize = isBreakpoint ? 65 : 100;
-  
+
   return (
     pathname === '/' ?
-    (
-      null
-    ) : (
-        <div className={`fixed z-20 bg-blend-overlay top-2 shadow-xl rounded-lg bg-slate-200 py-1`} style={{width: '90%', maxHeight: '1000px'}}>
+      (
+        null
+      ) : (
+        <div className={`fixed z-20 bg-blend-overlay top-2 shadow-xl rounded-lg bg-slate-200 py-1`} style={{ width: '90%', maxHeight: '1000px' }}>
           <div className='flex flex-row justify-between items-center w-full px-6'>
             <div className={`flex flex-col justify-evenly items-start w-full px-6`}>
               <div className='flex flex-row items-center justify-center space-x-2'>
                 <Link href='/'>
-                  <div className='hover:bg-themeAcqua bg-transparent rounded-full shadow-xl cursor-pointer' style={{ width: `${imSize - 20}px`, height: `${imSize - 20}px`}}>
+                  <div className='hover:bg-themeAcqua bg-transparent rounded-full shadow-xl cursor-pointer' style={{ width: `${imSize - 20}px`, height: `${imSize - 20}px` }}>
                     <Image src='/images/logoBG.png' alt='New Progress Co Logo' className='rounded-full' priority sizes='auto' width={imSize} height={imSize} />
                   </div>
                 </Link>
@@ -68,6 +68,6 @@ export default function NormalNavBar() {
             </div>
           </div>
         </div>
-    )
+      )
   );
 };
