@@ -44,7 +44,7 @@ export default function TestimonialComponent() {
         image: '/images/banksClassic.png',
         title: 'Banks Apparel Co',
         blurb: `A site for a small business apparel by Drew Fairbanks. This site is an example of a simple, clean, and easy to navigate site. This site was built with Next.js and Tailwind CSS. It should be understood that this is my current client and the site is currently under construction. I did the site, logo, hosting, and domain for this client.`,
-        url: 'https://banksapparelco.vercel.app'
+        url: 'https://banksapparel.vercel.app/'
     };
 
     const tc = {
