@@ -28,8 +28,8 @@ export default function ContactComponent() {
                         {`Email:`}
                     </h3>
                     <p className="text-base md:text-lg text-themeWater hover:themeAcqua hover:text-stone">
-                        <a href="mailto:newprogresscs@gmail.com">
-                            {`newprogresscs@gmail.com`}
+                        <a href="mailto:cdseaholm@gmail.com">
+                            {`cdseaholm@gmail.com`}
                         </a>
                     </p>
                 </div>

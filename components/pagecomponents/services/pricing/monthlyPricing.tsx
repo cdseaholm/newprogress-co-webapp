@@ -14,10 +14,10 @@ export default function MonthlyPricing() {
         {
             name: 'Full Site Creation',
             cost: `$250/month`,
-            explanation: `The reason that the cost is so low per month here as compared to full price up front divided by 6 months, is because typically my clients that take this rate, are looking for something longer term and are looking for a developer that is always available.`,
+            explanation: `The reason that the cost is so low per month here as compared to full price up front divided by 6 months, is because typically my clients that take this rate, are looking for something longer term and are looking for a developer that is always available. The only stipulation is that my rates are based on 10 hours of work a month, so if there are extra additions or edits needed, a pricing restructure may need to occure.`,
             details: [
                 `$0 down`,
-                `6 month minimum commitment, month to month after that`,
+                `12 month minimum commitment, month to month after that (Willing to do 3 and 6 month contracts with changes to the monthly fee to protect myself)`,
                 `24/7 support for the time you are paying the $250/month`,
                 `Unlimited edits for the time you are paying the $250/month`,
                 `Hosting included for the time you are paying the $250/month`,
