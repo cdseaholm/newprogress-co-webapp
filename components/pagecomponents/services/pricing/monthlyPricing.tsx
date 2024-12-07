@@ -2,13 +2,16 @@
 
 import { FiMoreHorizontal } from "react-icons/fi";
 import React from "react";
-import { useModalStore } from "@/context/modalStore";
+
+export type ProductType = {
+    name: string;
+    cost: string;
+    explanation: string;
+    details: string[];
+}
 
 
-export default function MonthlyPricing() {
-
-    const setInfo = useModalStore((state) => state.setInfo);
-    const setInfoModal = useModalStore((state) => state.setInfoModal);
+export default function MonthlyPricing({handleInfo}: {handleInfo: (prod: ProductType) => void}) {
 
     const products = [
         {
@@ -83,7 +86,7 @@ export default function MonthlyPricing() {
                     </tr>
                 </thead>
                 <tbody>
-                    {products.map((product, index) => (
+                    {products.map((product: ProductType, index: number) => (
                         <tr key={index} className="border-b border-themeStone/20 border-themeStone/20 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {product.name}
@@ -92,13 +95,7 @@ export default function MonthlyPricing() {
                                 {product.cost}
                             </td>
                             <td className="px-6 py-4 text-center" onClick={() => {
-                                setInfo({
-                                    title: product.name,
-                                    price: product.cost,
-                                    explanation: product.explanation,
-                                    details: product.details
-                                });
-                                setInfoModal(true);
+                                handleInfo(product)
                             }}>
                                 <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline self-center">
                                     <FiMoreHorizontal size={20} />

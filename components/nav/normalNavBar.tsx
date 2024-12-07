@@ -1,10 +1,9 @@
 'use client'
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useStateStore } from '@/context/stateStore';
-import { FiBookOpen, FiClipboard, FiDollarSign, FiFile, FiMail, FiMic } from 'react-icons/fi';
 import Image from "next/legacy/image";
 import DropDownNav from '../pagecomponents/services/pageNav/dropDownNav';
 
@@ -12,23 +11,15 @@ export default function NormalNavBar() {
 
   const pathname = usePathname();
   const isBreakpoint = useStateStore((state) => state.widthQuery) <= 768 ? true : false;
-  const [open, setOpen] = useState(false);
   const setDevCurrentSelection = useStateStore((state) => state.setDevCurrentSelection);
   const currentSelection = useStateStore((state) => state.devCurrentSelection);
   const tabs = pathname === '/npapps' ? ['Harbor', 'Financr', 'Trackr', 'Gamr'] : ['Services', 'Pricing', 'About', 'Testimonials', 'Templates', 'Contact'];
 
-  const handleClickedTab = (index: number) => {
+  const handleClickedTab = (tab: string) => {
+    const tabs = ['services', 'pricing', 'about', 'testimonials', 'contact'] as string[];
+    let index = tabs.findIndex((t: string) => t === tab);
     setDevCurrentSelection(index);
   }
-
-  const icons = pathname === '/npapps' ? [] : [
-    <FiClipboard key={'clipboard'} />,
-    <FiDollarSign key={'pricing'} />,
-    <FiBookOpen key={'about'} />,
-    <FiMic key={'testimonials'} />,
-    <FiFile key={'templates'} />,
-    <FiMail key={'contact'} />
-  ];
 
   const imSize = isBreakpoint ? 65 : 100;
 
@@ -60,10 +51,10 @@ export default function NormalNavBar() {
             <div className='flex flex-row items-center justify-center space-x-2'>
               <p className='font-semibold text-sm text-themeStone/80'>{tabs[currentSelection]}</p>
               {pathname === '/webdevelopment' && (
-                <DropDownNav open={open} setOpen={setOpen} tabs={tabs} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons} />
+                <DropDownNav handleClickedTab={handleClickedTab} />
               )}
               {pathname === '/npapps' && (
-                <DropDownNav open={open} setOpen={setOpen} tabs={tabs} handleClickedTab={handleClickedTab} currentSelection={currentSelection} icons={icons} />
+                <DropDownNav handleClickedTab={handleClickedTab} />
               )}
             </div>
           </div>
