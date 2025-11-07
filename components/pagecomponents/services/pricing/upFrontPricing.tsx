@@ -3,6 +3,7 @@
 import React from "react";
 import { FiMoreHorizontal } from "react-icons/fi";
 import { ProductType } from "./monthlyPricing";
+import { Table } from "@mantine/core";
 
 
 export default function UpFrontPricing({ handleInfo }: { handleInfo: (prod: ProductType) => void }) {
@@ -64,42 +65,74 @@ export default function UpFrontPricing({ handleInfo }: { handleInfo: (prod: Prod
         }
     ];
 
+    const rows = products.map((product: ProductType, index: number) => (
+        <Table.Tr key={index} >
+            <Table.Td>{product.name}</Table.Td>
+            <Table.Td>{product.cost}</Table.Td>
+            <Table.Td>
+                <a href="#" onClick={() => {
+                    handleInfo(product)
+                }}>
+                    <FiMoreHorizontal size={20} />
+                </a>
+            </Table.Td>
+        </Table.Tr>
+    ));
+
     return (
-        <div className={`relative overflow-x-hidden w-full h-full`}>
-            <table className="w-full h-4/5 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 shadow-md sm:rounded-lg bg-gradient-to-tr from-themeAcqua/50 to-themeWhite/80">
-                <thead className="text-xs text-gray-700 uppercase dark:text-gray-400">
-                    <tr>
-                        <th scope="col" className="px-6 py-3">
-                            Service
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Price
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            More
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {products.map((product: ProductType, index: number) => (
-                        <tr key={index} className="border-b border-themeStone/20 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {product.name}
-                            </th>
-                            <td className="px-6 py-4">
-                                {product.cost}
-                            </td>
-                            <td className="px-6 py-4 text-right" onClick={() => {
-                                handleInfo(product)
-                            }}>
-                                <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                    <FiMoreHorizontal size={20} />
-                                </a>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+        <div className="w-full h-full flex justify-center items-center px-4 rounded-md bg-white/80">
+            <Table verticalSpacing={'xl'}>
+                <Table.Thead>
+                    <Table.Tr>
+                        <Table.Th>Service</Table.Th>
+                        <Table.Th>Price</Table.Th>
+                        <Table.Th>More</Table.Th>
+                    </Table.Tr>
+                </Table.Thead>
+                <Table.Tbody>
+                    {rows}
+                </Table.Tbody>
+            </Table>
         </div>
     )
 }
+
+//     return (
+//         <div className={`relative overflow-x-hidden w-full h-full`}>
+//             <table className="w-full h-4/5 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 shadow-md sm:rounded-lg bg-gradient-to-tr from-themeAcqua/50 to-themeWhite/80">
+//                 <thead className="text-xs text-gray-700 uppercase dark:text-gray-400">
+//                     <tr>
+//                         <th scope="col" className="px-6 py-3">
+//                             Service
+//                         </th>
+//                         <th scope="col" className="px-6 py-3">
+//                             Price
+//                         </th>
+//                         <th scope="col" className="px-6 py-3">
+//                             More
+//                         </th>
+//                     </tr>
+//                 </thead>
+//                 <tbody>
+//                     {products.map((product: ProductType, index: number) => (
+//                         <tr key={index} className="border-b border-themeStone/20 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+//                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+//                                 {product.name}
+//                             </th>
+//                             <td className="px-6 py-4">
+//                                 {product.cost}
+//                             </td>
+//                             <td className="px-6 py-4 text-right" onClick={() => {
+//                                 handleInfo(product)
+//                             }}>
+//                                 <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+//                                     <FiMoreHorizontal size={20} />
+//                                 </a>
+//                             </td>
+//                         </tr>
+//                     ))}
+//                 </tbody>
+//             </table>
+//         </div>
+//     )
+// }

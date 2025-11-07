@@ -1,8 +1,10 @@
 'use client'
 
-import { Dropdown, DropdownTrigger, Button, DropdownMenu, DropdownItem, DropdownSection } from "@nextui-org/react";
 import { FiBookOpen, FiClipboard, FiDollarSign, FiMail, FiMenu, FiMic } from "react-icons/fi";
-import React, { useState } from "react";
+import React from "react";
+import { Menu } from "@mantine/core";
+import { useRouter } from "next/navigation";
+import { useStateStore } from "@/context/stateStore";
 
 export const ServicesTab = () => {
     return (
@@ -34,72 +36,76 @@ export const ContactTab = () => {
     )
 }
 
-export default function DropDownNav({ handleClickedTab }: { handleClickedTab: (tab: string) => void }) {
+export default function DropDownNav() {
 
+    //leaving handleClickedTab for future use with NPApps and such because it currently handles it
     {/**['Harbor', 'Financr', 'Trackr', 'Gamr'] */ }
+    const router = useRouter();
+    const setGlobalLoading = useStateStore((state) => state.setLoading);
 
-    const [currentTab, setCurrentTab] = useState<string>("Services");
+    //const [currentTab, setCurrentTab] = useState<string>("Services");
+
+    const clickTab = (tab: string) => {
+        setGlobalLoading(true);
+        router.push(tab)
+    };
 
     return (
-        <Dropdown backdrop="blur" className="w-full">
-            <DropdownTrigger>
-                <Button className={`hover:underline bg-transparent font-medium min-w-4 w-full capitalize`}>
-                    <div className="flex flex-row justify-end items-center w-full space-x-3">
-                        <p>{currentTab}</p>
-                        <FiMenu size={21} />
-                    </div>
-                </Button>
-            </DropdownTrigger>
-            <DropdownMenu
-                variant="faded"
-                aria-label="Static Actions"
-                className="bg-stone-200 rounded-sm"
-                closeOnSelect={true}
-                onAction={(key) => {
-                    let stringKey = key.toString();
-                    let firstChar = stringKey.charAt(0).toUpperCase();
-                    let restOfString = stringKey.slice(1);
-                    let upperString = firstChar + restOfString;
-                    setCurrentTab(upperString);
-                    handleClickedTab(stringKey);
-                }}
-                selectionMode="single"
-                selectedKeys={currentTab}
-                disallowEmptySelection
-            >
-                <DropdownSection className="text-black text-md md:text-lg hover:underline px-1 rounded-md flex-wrap rounded-md">
-                    <DropdownItem
-                        key={'services'}
-                        startContent={<ServicesTab />}
-                    >
-                        Services
-                    </DropdownItem>
-                    <DropdownItem
-                        key={'pricing'}
-                        startContent={<PricingTab />}
-                    >
-                        Pricing
-                    </DropdownItem>
-                    <DropdownItem
-                        key={'about'}
-                        startContent={<AboutTab />}
-                    >
-                        About
-                    </DropdownItem>
-                    <DropdownItem
-                        key={'testimonials'}
-                        startContent={<TestimonialsTab />}
-                    >
-                        Testimonials
-                    </DropdownItem>
-                    <DropdownItem
-                        key={'contact'}
-                        startContent={<ContactTab />}
-                    >
-                        Contact
-                    </DropdownItem>
-                </DropdownSection>
-            </DropdownMenu>
-        </Dropdown>
+        <Menu shadow="md" width={200} position="bottom-end" offset={3} closeOnItemClick closeOnEscape closeOnClickOutside>
+            <Menu.Target>
+                <div className="flex flex-row justify-end items-center w-full space-x-3 cursor-pointer">
+                    {/**<p>{currentTab}</p> */}
+                    <FiMenu size={21} />
+                </div>
+            </Menu.Target>
+
+            <Menu.Dropdown>
+                <Menu.Item
+                    key={'web-development'}
+                    onClick={() => {
+                        clickTab('/web-development');
+                    }}
+                >
+                    <p className="cursor-pointer text-md font-semibold">Web Development</p>
+                </Menu.Item>
+                <Menu.Divider />
+                <Menu.Item
+                    key={'services'}
+                    leftSection={<ServicesTab />}
+                    onClick={() => clickTab('/web-development/services')}
+                >
+                    Services
+                </Menu.Item>
+                <Menu.Item
+                    key={'pricing'}
+                    leftSection={<PricingTab />}
+                    onClick={() => clickTab('/web-development/pricing')}
+                >
+                    Pricing
+                </Menu.Item>
+                <Menu.Item
+                    key={'about'}
+                    leftSection={<AboutTab />}
+                    onClick={() => clickTab('/web-development/about')}
+                >
+                    About
+                </Menu.Item>
+                <Menu.Item
+                    key={'testimonials'}
+                    leftSection={<TestimonialsTab />}
+                    onClick={() => clickTab('/web-development/testimonials')}
+                >
+                    Testimonials
+                </Menu.Item>
+                <Menu.Item
+                    key={'contact'}
+                    leftSection={<ContactTab />}
+                    onClick={() => clickTab('/web-development/contact')}
+                >
+                    Contact
+                </Menu.Item>
+            </Menu.Dropdown>
+        </Menu>
+
     )
 }
