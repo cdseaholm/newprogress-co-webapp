@@ -1,7 +1,7 @@
 'use client'
 
 import { useStateStore } from '@/context/stateStore';
-import React from 'react';
+import React, { JSX } from 'react';
 import ImageFormat from './imageFormat';
 
 export const AccordionPage = ({panels, heights, openDefault, panelPoints, titles, parent}: {panels: JSX.Element[], heights: number[], openDefault: boolean, panelPoints: string[][], titles: string[], parent: string}) => {

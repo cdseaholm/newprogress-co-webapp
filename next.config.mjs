@@ -1,4 +1,37 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "*",
+          },
+        ],
+      },
+    ];
+  },
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'utfs.io'
+      }
+    ]
+  },
+  experimental: {
+    optimizePackageImports: ['@mantine/core', '@mantine/hooks']
+  },
+  productionBrowserSourceMaps: true,
+  webpack: (config, { dev }) => {
+    if (!dev) {
+      config.devtool = 'source-map';
+    }
+
+    return config;
+  },
+  productionBrowserSourceMaps: true
+};
 
 export default nextConfig;

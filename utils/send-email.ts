@@ -1,13 +1,11 @@
-import { contactFormSchema } from '@/components/modals/contact';
-import { z } from 'zod';
+export async function sendEmail(data: { name: string; email: string; message: string; }): Promise<boolean> {
 
-export async function sendEmail(data: z.infer<typeof contactFormSchema>) {
     const apiEndpoint = '/api/email';
 
-        return fetch(apiEndpoint, {
-            method: 'POST',
-            body: JSON.stringify(data),
-        })
+    return fetch(apiEndpoint, {
+        method: 'POST',
+        body: JSON.stringify(data),
+    })
         .then((res) => res.json())
         .then((response) => {
             if (response.status === 200) {

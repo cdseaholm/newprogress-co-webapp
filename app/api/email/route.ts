@@ -1,4 +1,7 @@
 
+import connectDB from '@/lib/mongodb';
+import Message from '@/models/messageModel';
+import { IMessageType } from '@/models/types/message';
 import { type NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
@@ -26,9 +29,9 @@ export async function POST(request: NextRequest) {
   const mailOptions: Mail.Options = {
     from: process.env.NEXT_PUBLIC_NP_EMAIL,
     to: process.env.NEXT_PUBLIC_ADMIN_EMAIL,
-    cc: process.env.NEXT_PUBLIC_NP_EMAIL, //add `email` here if you want to send a copy to the user
-    subject: `Message from ${name} (${email})`,
-    text: message,
+    cc: process.env.NEXT_PUBLIC_NP_EMAIL,
+    subject: `New Message Submitted from ${name} via New Progress Website`,
+    text: `You have received a new message from the contact form on your website.\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}`,
   };
 
   const sendMailPromise = () =>
@@ -43,8 +46,23 @@ export async function POST(request: NextRequest) {
     });
 
   try {
+
+    await connectDB();
+
+    const newMessage = await Message.create({
+      name: name,
+      email: email,
+      message: message,
+    }) as IMessageType
+
+    if (!newMessage) {
+      return NextResponse.json({ status: 500, message: "Error creating newMessage" });
+    }
+
     await sendMailPromise();
-    return NextResponse.json({ message: 'Email sent', status: 200});
+
+    return NextResponse.json({ message: 'Email sent', status: 200 });
+
   } catch (err) {
     return NextResponse.json({ error: err }, { status: 500 });
   }

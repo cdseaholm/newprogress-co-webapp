@@ -49,7 +49,7 @@ export default function LargeNavBar() {
                         </Link>
                         <div className='mx-2'>|</div>
                         */}
-                        <Link className={` hover:text-themeStone/80 rounded-lg p-1 font-semibold ${pathname === '/webdevelopment' ? 'underline font-bold text-themeStone hover:cursor-default hover:text-themeStone/80 md:text-xs' : 'hover:bg-themeAcqua hover:text-black/70 md:text-xs hover:md:text-sm'}`} href={`/webdevelopment`}>
+                        <Link className={` hover:text-themeStone/80 rounded-lg p-1 font-semibold ${pathname === '/web-development' ? 'underline font-bold text-themeStone hover:cursor-default hover:text-themeStone/80 md:text-xs' : 'hover:bg-themeAcqua hover:text-black/70 md:text-xs hover:md:text-sm'}`} href={`/web-development`}>
                             <p>Web Development</p>
                         </Link>
                     </div>

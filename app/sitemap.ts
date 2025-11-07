@@ -22,7 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: `daily`
     },
     {
-      url: `${getBaseUrl()}/webdevelopment`,
+      url: `${getBaseUrl()}/web-development`,
       lastModified: new Date().toISOString(),
       priority: 0.8,
       changeFrequency: `weekly`
